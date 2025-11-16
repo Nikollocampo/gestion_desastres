@@ -26,7 +26,7 @@ public class RutaController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<RutaResponseDto>> listar() {
+    public ResponseEntity<List<RutaResponseDto>> listar() throws IOException {
         return ResponseEntity.ok(rutaService.listar());
     }
 }

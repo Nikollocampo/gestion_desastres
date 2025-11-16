@@ -5,6 +5,7 @@ import com.example.estructuras.Mapping.dto.RutaResponseDto;
 import com.example.estructuras.Mapping.dto.UbicacionResponseDto;
 import com.example.estructuras.model.Ruta;
 import com.example.estructuras.model.Ubicacion;
+import com.example.estructuras.repository.RutaJsonRepository;
 import com.example.estructuras.repository.UbicacionJsonRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,11 @@ import java.util.Optional;
 @Service
 public class RutaService {
     private final UbicacionJsonRepository ubicacionRepository;
-    private final List<Ruta> rutas = new ArrayList<>();
+    private final RutaJsonRepository rutaRepository;
 
-    public RutaService(UbicacionJsonRepository ubicacionRepository) {
+    public RutaService(UbicacionJsonRepository ubicacionRepository, RutaJsonRepository rutaRepository) {
         this.ubicacionRepository = ubicacionRepository;
+        this.rutaRepository = rutaRepository;
     }
 
     public RutaResponseDto crear(RutaRequestDto dto) throws IOException {
@@ -27,14 +29,14 @@ public class RutaService {
         Ubicacion destino = obtenerUbicacion(dto.getDestinoId());
 
         Ruta ruta = new Ruta(origen, destino, dto.getDistancia());
-        rutas.add(ruta);
+        rutaRepository.add(ruta);
 
         return toResponseDto(ruta);
     }
 
-    public List<RutaResponseDto> listar() {
+    public List<RutaResponseDto> listar() throws IOException {
         List<RutaResponseDto> lista = new ArrayList<>();
-        for (Ruta ruta : rutas) {
+        for (Ruta ruta : rutaRepository.findAll()) {
             lista.add(toResponseDto(ruta));
         }
         return lista;
