@@ -1,23 +1,22 @@
-package com.example.estructuras.model;
+package com.example.estructuras.Mapping.dto;
 
-public class Equipo {
+import com.example.estructuras.model.TipoEquipo;
+
+public class EquipoResponseDto {
     private String idEquipo;
     private int integrantesDisponibles;
     private TipoEquipo tipoEquipo;
-    private Ubicacion ubicacion;
+    private UbicacionResponseDto ubicacion;
 
-    public Equipo(String idEquipo, int integrantesDisponibles, TipoEquipo tipoEquipo) {
+    public EquipoResponseDto() {}
+
+    public EquipoResponseDto(String idEquipo, int integrantesDisponibles, TipoEquipo tipoEquipo, UbicacionResponseDto ubicacion) {
         this.idEquipo = idEquipo;
         this.integrantesDisponibles = integrantesDisponibles;
         this.tipoEquipo = tipoEquipo;
-        this.ubicacion =  new Ubicacion("U1", "Ubicacion equipo", "5", "10",TipoUbicacion.CENTRO_AYUDA);
+        this.ubicacion = ubicacion;
     }
 
-    public Equipo(){};
-
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
     public String getIdEquipo() {
         return idEquipo;
     }
@@ -36,14 +35,11 @@ public class Equipo {
     public void setTipoEquipo(TipoEquipo tipoEquipo) {
         this.tipoEquipo = tipoEquipo;
     }
-    public void setUbicacion(Ubicacion ubicacion) {this.ubicacion = ubicacion; }
-
-    @Override
-    public String toString() {
-        return "Equipo{" +
-                "idEquipo='" + idEquipo + '\'' +
-                ", integrantesDisponibles=" + integrantesDisponibles +
-                ", tipoEquipo=" + tipoEquipo +
-                '}';
+    public UbicacionResponseDto getUbicacion() {
+        return ubicacion;
     }
+    public void setUbicacion(UbicacionResponseDto ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
 }

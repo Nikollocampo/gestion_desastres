@@ -1,23 +1,22 @@
-package com.example.estructuras.model;
+package com.example.estructuras.Mapping.dto;
 
-public class Equipo {
+import com.example.estructuras.model.TipoEquipo;
+
+public class EquipoRequestDto {
     private String idEquipo;
     private int integrantesDisponibles;
     private TipoEquipo tipoEquipo;
-    private Ubicacion ubicacion;
+    private String ubicacionId;
 
-    public Equipo(String idEquipo, int integrantesDisponibles, TipoEquipo tipoEquipo) {
+    public EquipoRequestDto() {}
+
+    public EquipoRequestDto(String idEquipo, int integrantesDisponibles, TipoEquipo tipoEquipo, String ubicacionId) {
         this.idEquipo = idEquipo;
         this.integrantesDisponibles = integrantesDisponibles;
         this.tipoEquipo = tipoEquipo;
-        this.ubicacion =  new Ubicacion("U1", "Ubicacion equipo", "5", "10",TipoUbicacion.CENTRO_AYUDA);
+        this.ubicacionId = ubicacionId;
     }
 
-    public Equipo(){};
-
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
     public String getIdEquipo() {
         return idEquipo;
     }
@@ -36,14 +35,12 @@ public class Equipo {
     public void setTipoEquipo(TipoEquipo tipoEquipo) {
         this.tipoEquipo = tipoEquipo;
     }
-    public void setUbicacion(Ubicacion ubicacion) {this.ubicacion = ubicacion; }
-
-    @Override
-    public String toString() {
-        return "Equipo{" +
-                "idEquipo='" + idEquipo + '\'' +
-                ", integrantesDisponibles=" + integrantesDisponibles +
-                ", tipoEquipo=" + tipoEquipo +
-                '}';
+    public String getUbicacionId() {
+        return ubicacionId;
     }
+    public void setUbicacionId(String ubicacionId) {
+        this.ubicacionId = ubicacionId;
+    }
+
+
 }
