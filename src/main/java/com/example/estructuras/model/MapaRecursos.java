@@ -24,7 +24,7 @@ public class MapaRecursos {
 
         if (recursos.containsKey(recurso.getTipo())) {
             // Si ya existe el tipo, incrementar cantidad
-            recursos.get(recurso.getTipo()).agregarCantidad(recurso.getCantidad());
+            //recursos.get(recurso.getTipo()).agregarCantidad(recurso.getCantidad());
         } else {
             // Si no existe, agregar nuevo
             recursos.put(recurso.getTipo(), recurso);

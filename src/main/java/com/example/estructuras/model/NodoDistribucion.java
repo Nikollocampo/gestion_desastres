@@ -35,7 +35,7 @@ public class NodoDistribucion {
                     int disponible = recurso.getCantidad();
                     if (disponible <= 0) continue;
                     int aConsumir = Math.min(disponible, faltante);
-                    recurso.consumir(aConsumir);
+                    //recurso.consumir(aConsumir);
                     faltante -= aConsumir;
                     asignadoNodo.put(tipo, asignadoNodo.getOrDefault(tipo, 0) + aConsumir);
                 }

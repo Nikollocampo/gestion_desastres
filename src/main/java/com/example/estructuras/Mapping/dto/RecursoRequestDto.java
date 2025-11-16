@@ -5,7 +5,7 @@ public class RecursoRequestDto {
     private String nombre;
     private String tipo; // nombre del enum TipoRecurso
     private int cantidad;
-    private UbicacionDto ubicacion;
+    private UbicacionResponseDto ubicacion;
 
     public RecursoRequestDto() {}
 
@@ -21,6 +21,6 @@ public class RecursoRequestDto {
     public int getCantidad() { return cantidad; }
     public void setCantidad(int cantidad) { this.cantidad = cantidad; }
 
-    public UbicacionDto getUbicacion() { return ubicacion; }
-    public void setUbicacion(UbicacionDto ubicacion) { this.ubicacion = ubicacion; }
+    public UbicacionResponseDto getUbicacion() { return ubicacion; }
+    public void setUbicacion(UbicacionResponseDto ubicacion) { this.ubicacion = ubicacion; }
 }

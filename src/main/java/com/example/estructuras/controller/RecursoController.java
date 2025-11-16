@@ -31,29 +31,29 @@ public class RecursoController {
         return ResponseEntity.ok(recursoService.listar());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id")
     public ResponseEntity<RecursoRequestDto> obtenerPorId(@PathVariable String id) throws IOException {
         return ResponseEntity.ok(recursoService.obtenerPorId(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/id")
     public ResponseEntity<RecursoRequestDto> actualizar(@PathVariable String id, @RequestBody RecursoRequestDto dto) throws IOException {
         dto.setId(id); // Asegura que el ID del path se use en la actualización
         return ResponseEntity.ok(recursoService.actualizar(dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/id")
     public ResponseEntity<Void> eliminar(@PathVariable String id) throws IOException {
         recursoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/{id}/agregar")
+    @PatchMapping("/agregar")
     public ResponseEntity<RecursoRequestDto> agregarCantidad(@PathVariable String id, @RequestParam int cantidad) throws IOException {
         return ResponseEntity.ok(recursoService.agregarCantidad(id, cantidad));
     }
 
-    @PatchMapping("/{id}/consumir")
+    @PatchMapping("/consumir")
     public ResponseEntity<String> consumir(@PathVariable String id, @RequestParam int cantidad) throws IOException {
         boolean resultado = recursoService.consumir(id, cantidad);
         if (resultado) {

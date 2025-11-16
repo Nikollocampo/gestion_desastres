@@ -2,21 +2,21 @@ package com.example.estructuras.Mapping.dto;
 
 import com.example.estructuras.model.TipoUbicacion;
 
-public class UbicacionDto {
+public class UbicacionResponseDto {
     private String id;
     private String nombre;
     private String calle;
     private String carrera;
     private TipoUbicacion tipoUbicacion;
 
-    public UbicacionDto(String id, String nombre, String calle, String carrera, TipoUbicacion tipoUbicacion) {
+    public UbicacionResponseDto(String id, String nombre, String calle, String carrera, TipoUbicacion tipoUbicacion) {
         this.id = id;
         this.nombre = nombre;
         this.calle = calle;
         this.carrera = carrera;
         this.tipoUbicacion = tipoUbicacion;
     }
-    public UbicacionDto() {}
+    public UbicacionResponseDto() {}
 
     public String getId() {
         return id;

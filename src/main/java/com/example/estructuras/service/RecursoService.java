@@ -1,8 +1,7 @@
 package com.example.estructuras.service;
 
 import com.example.estructuras.Mapping.dto.RecursoRequestDto;
-import com.example.estructuras.Mapping.dto.RecursoResponseDto;
-import com.example.estructuras.Mapping.dto.UbicacionDto;
+import com.example.estructuras.Mapping.dto.UbicacionResponseDto;
 import com.example.estructuras.model.Recurso;
 import com.example.estructuras.model.TipoRecurso;
 import com.example.estructuras.model.Ubicacion;
@@ -119,7 +118,7 @@ public class RecursoService {
         dto.setCantidad(r.getCantidad());
 
         if (r.getUbicacion() != null) {
-            UbicacionDto u = new UbicacionDto(
+            UbicacionResponseDto u = new UbicacionResponseDto(
                     r.getUbicacion().getId(),
                     r.getUbicacion().getNombre(),
                     r.getUbicacion().getCalle(),
