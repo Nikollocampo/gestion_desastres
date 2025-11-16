@@ -8,7 +8,6 @@ public class Nodo implements  Comparable<Nodo>{
         this.ubicacion = ubicacion;
         this.distancia = distancia;
     }
-
     @Override
     public int compareTo(Nodo otro) {
         return Float.compare(this.distancia, otro.distancia);
