@@ -53,5 +53,4 @@ public class AuthService {
         }
         return new UsuarioResponseDto(u.getId(), u.getEmail(), u.getNombre(), u.getRol());
     }
-
 }
