@@ -1,4 +1,4 @@
-// src/main/java/com/uniQuindio/gestionDesastres/model/Usuario.java
+
 package com.example.estructuras.model;
 
 public class Usuario {

@@ -29,12 +29,5 @@ public class AuthController {
         UsuarioResponseDto response = authService.login(dto);
         return ResponseEntity.ok(response);
     }
-
-    /*@GetMapping("/administrador")
-    public ResponseEntity<String> administradorAccess() {
-        authService.getDataAdminsitrador();
-        return ResponseEntity.ok("Acceso concedido para administrador");
-    }*/
-
 }
 

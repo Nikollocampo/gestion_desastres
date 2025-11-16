@@ -22,10 +22,7 @@ public class Ubicacion {
     public String getId() {
         return id;
     }
-    public String toLineaArchivo() {
-        return String.format("ID: %s | Nombre: %s | Calle: %s | Carrera: %s | Tipo: %s",
-                id, nombre, calle, carrera, tipoUbicacion);
-    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
