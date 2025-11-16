@@ -1,0 +1,25 @@
+[ {
+  "id" : "e2e81d34-c741-4f4f-b972-776fe81ac419",
+  "nombre" : "maria",
+  "email" : "nikoll@gmail2.com",
+  "contrasena" : "123",
+  "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "f6280445-75fa-460e-b0d6-8390c90de116",
+  "nombre" : "nikoll",
+  "email" : "nikoll@gmail3.com",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
+}, {
+  "id" : "605abd38-a66c-4387-928d-75d515454f25",
+  "nombre" : "sofia",
+  "email" : "nikoll@gmail4.com",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
+}, {
+  "id" : "8db9ec8e-3cab-40cf-b2b6-0e8aa3a64c95",
+  "nombre" : "nikoll 5",
+  "email" : "nikoll@gmail5.com",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
+} ]
