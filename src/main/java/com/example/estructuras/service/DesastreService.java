@@ -116,23 +116,13 @@ public class DesastreService {
      */
     public List<DesastreResponseDto> obtenerDesastresPorPrioridad() throws IOException {
         List<Desastre> desastres = desastreRepository.findAll();
-
-        // Crear cola de prioridad con comparador personalizado (mayor prioridad primero)
-        // Menor número = mayor prioridad (1=Alta, 2=Media, 3=Baja)
-        Comparator<Desastre> comparadorPrioridad = (d1, d2) -> {
-            int nivel1 = d1.asignarNivelPrioridad();
-            int nivel2 = d2.asignarNivelPrioridad();
-            return Integer.compare(nivel1, nivel2); // Orden ascendente (1 primero)
-        };
-
+        Comparator<Desastre> comparadorPrioridad = Comparator.comparingInt(Desastre::asignarNivelPrioridad);
         ColaPrioridad<Desastre> cola = new ColaPrioridad<>(comparadorPrioridad);
         cola.encolarTodos(desastres);
-
         List<DesastreResponseDto> resultado = new ArrayList<>();
         while (!cola.estaVacia()) {
             resultado.add(convertirADto(cola.atenderSiguiente()));
         }
-
         return resultado;
     }
 
@@ -142,16 +132,9 @@ public class DesastreService {
     public DesastreResponseDto obtenerDesastreMasUrgente() throws IOException {
         List<Desastre> desastres = desastreRepository.findAll();
         if (desastres.isEmpty()) return null;
-
-        Comparator<Desastre> comparadorPrioridad = (d1, d2) -> {
-            int nivel1 = d1.asignarNivelPrioridad();
-            int nivel2 = d2.asignarNivelPrioridad();
-            return Integer.compare(nivel1, nivel2);
-        };
-
+        Comparator<Desastre> comparadorPrioridad = Comparator.comparingInt(Desastre::asignarNivelPrioridad);
         ColaPrioridad<Desastre> cola = new ColaPrioridad<>(comparadorPrioridad);
         cola.encolarTodos(desastres);
-
         Desastre masUrgente = cola.verSiguiente();
         return masUrgente != null ? convertirADto(masUrgente) : null;
     }
@@ -161,23 +144,15 @@ public class DesastreService {
      */
     public List<DesastreResponseDto> obtenerTopDesastresUrgentes(int cantidad) throws IOException {
         List<Desastre> desastres = desastreRepository.findAll();
-
-        Comparador<Desastre> comparadorPrioridad = (d1, d2) -> {
-            int nivel1 = d1.asignarNivelPrioridad();
-            int nivel2 = d2.asignarNivelPrioridad();
-            return Integer.compare(nivel1, nivel2);
-        };
-
+        Comparator<Desastre> comparadorPrioridad = Comparator.comparingInt(Desastre::asignarNivelPrioridad);
         ColaPrioridad<Desastre> cola = new ColaPrioridad<>(comparadorPrioridad);
         cola.encolarTodos(desastres);
-
         List<DesastreResponseDto> resultado = new ArrayList<>();
         int count = 0;
         while (!cola.estaVacia() && count < cantidad) {
             resultado.add(convertirADto(cola.atenderSiguiente()));
             count++;
         }
-
         return resultado;
     }
 
@@ -187,7 +162,6 @@ public class DesastreService {
      */
     public List<DesastreResponseDto> obtenerDesastresPorNivelPrioridad(String nivelPrioridad) throws IOException {
         List<Desastre> desastres = desastreRepository.findAll();
-
         return desastres.stream()
                 .filter(d -> d.asignarPrioridad().equalsIgnoreCase(nivelPrioridad))
                 .map(this::convertirADto)
