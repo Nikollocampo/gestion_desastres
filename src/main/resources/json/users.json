@@ -22,4 +22,28 @@
   "email" : "nikoll@gmail5.com",
   "contrasena" : "123",
   "rol" : "ADMINISTRADOR"
+}, {
+  "id" : "d75eefe7-c13a-422a-957b-0b01d07cb280",
+  "nombre" : null,
+  "email" : "sofia@gmail.com",
+  "contrasena" : null,
+  "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "77797dd3-eb68-44d2-996a-90fb2e2784fd",
+  "nombre" : null,
+  "email" : "isa@gmail.com",
+  "contrasena" : "123",
+  "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "1caef6e3-b586-46a2-b6eb-fefada8585f4",
+  "nombre" : "nikoll",
+  "email" : "dani@gmail.com",
+  "contrasena" : "123",
+  "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "2a350c80-7325-4eba-81b4-e52f52e6ac5c",
+  "nombre" : "jhon",
+  "email" : "j@",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
 } ]

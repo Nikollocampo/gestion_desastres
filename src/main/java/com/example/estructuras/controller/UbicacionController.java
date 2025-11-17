@@ -19,7 +19,7 @@ public class UbicacionController {
         this.ubicacionService = ubicacionService;
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public ResponseEntity<UbicacionResponseDto> crear(@RequestBody UbicacionRequestDto dto) throws IOException {
         UbicacionResponseDto response = ubicacionService.crear(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
