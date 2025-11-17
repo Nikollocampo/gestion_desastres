@@ -9,4 +9,26 @@
     "carrera" : "15",
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
+}, {
+  "idEquipo" : "E2",
+  "integrantesDisponibles" : 8,
+  "tipoEquipo" : "MEDICOS",
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "idEquipo" : "E3",
+  "integrantesDisponibles" : 6,
+  "tipoEquipo" : "MEDICOS",
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
 } ]

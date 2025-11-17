@@ -58,4 +58,16 @@
   "email" : "juan.perez@example.com",
   "contrasena" : null,
   "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "5434f1f1-efd7-4670-bf9c-9351c89ab414",
+  "nombre" : "sofia",
+  "email" : "sofi@",
+  "contrasena" : "123",
+  "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "9c56d54b-37c8-4961-8785-bcc7a01cb0d5",
+  "nombre" : "sofia",
+  "email" : "sofia@1",
+  "contrasena" : "1234",
+  "rol" : "ADMINISTRADOR"
 } ]
