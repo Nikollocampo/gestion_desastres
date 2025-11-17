@@ -30,4 +30,20 @@
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
   "distancia" : 15.5
+}, {
+  "origen" : {
+    "id" : "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
+    "nombre" : "Salud Integral",
+    "calle" : "18",
+    "carrera" : "3",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "destino" : {
+    "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+    "nombre" : "Colegio San Luis",
+    "calle" : "calle 4",
+    "carrera" : "carrera 10",
+    "tipoUbicacion" : "REFUGIO"
+  },
+  "distancia" : 23.4
 } ]
