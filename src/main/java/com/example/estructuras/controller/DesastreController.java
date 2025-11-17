@@ -90,7 +90,7 @@ public class DesastreController {
     }
 
     // Obtener equipos asignados a un desastre
-    @GetMapping("/id/equipos")
+    @GetMapping("/{id}/equipos")
     public ResponseEntity<List<EquipoResponseDto>> obtenerEquiposAsignados(@PathVariable String id) throws IOException {
         DesastreResponseDto desastre = desastreService.obtenerPorId(id);
         if (desastre == null) {
@@ -99,13 +99,7 @@ public class DesastreController {
         return ResponseEntity.ok(desastre.getEquiposAsignados());
     }
 
-    // ==================== ENDPOINTS CON COLA DE PRIORIDAD ====================
-
-    /**
-     * Obtiene todos los desastres ordenados por prioridad (de mayor a menor).
-     * Usa ColaPrioridad internamente.
-     */
-    @GetMapping("/por-prioridad")
+    @GetMapping("/prioridad")
     public ResponseEntity<List<DesastreResponseDto>> obtenerDesastresPorPrioridad() throws IOException {
         List<DesastreResponseDto> desastres = desastreService.obtenerDesastresPorPrioridad();
         return ResponseEntity.ok(desastres);
