@@ -1,9 +1,11 @@
 package com.example.estructuras.Mapping.dto;
 
+import com.example.estructuras.model.TipoRecurso;
+
 public class RecursoRequestDto {
     private String id;
     private String nombre;
-    private String tipo; // nombre del enum TipoRecurso
+    private TipoRecurso tipo; // Enum correcto
     private int cantidad;
     private UbicacionResponseDto ubicacion;
 
@@ -15,8 +17,8 @@ public class RecursoRequestDto {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public TipoRecurso getTipo() { return tipo; }
+    public void setTipo(TipoRecurso tipo) { this.tipo = tipo; }
 
     public int getCantidad() { return cantidad; }
     public void setCantidad(int cantidad) { this.cantidad = cantidad; }

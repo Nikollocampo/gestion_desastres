@@ -164,7 +164,7 @@ public class MapaRecursosController {
         return new Recurso(
             dto.getId(),
             dto.getNombre(),
-            TipoRecurso.valueOf(dto.getTipo()),
+            dto.getTipo(), // Usar el enum directamente
             dto.getCantidad()
         );
     }
@@ -179,4 +179,3 @@ public class MapaRecursosController {
         );
     }
 }
-

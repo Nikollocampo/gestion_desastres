@@ -36,7 +36,7 @@ public class NodoDistribucionController {
     public ResponseEntity<NodoDistribucionResponseDto> crear(@RequestBody NodoDistribucionRequestDto request) {
         NodoDistribucionResponseDto dto = service.create(request);
         if (dto == null) return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.status(201).body(dto);
     }
 
     @PutMapping("/{ubicacionId}")
@@ -59,7 +59,12 @@ public class NodoDistribucionController {
             @PathVariable String ubicacionId,
             @RequestParam String tipoRecurso,
             @RequestParam int cantidad) {
-        TipoRecurso tipo = TipoRecurso.valueOf(tipoRecurso);
+        TipoRecurso tipo;
+        try {
+            tipo = TipoRecurso.valueOf(tipoRecurso);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
         NodoDistribucionResponseDto dto = service.agregarNecesidad(ubicacionId, tipo, cantidad);
         if (dto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(dto);
@@ -80,7 +85,11 @@ public class NodoDistribucionController {
     public ResponseEntity<Map<String, Integer>> asignarRecursosDisponibles(
             @PathVariable String ubicacionId,
             @RequestBody List<RecursoRequestDto> recursosDto) {
-        List<Recurso> recursos = recursosDto.stream().map(this::toRecurso).collect(Collectors.toList());
+        List<Recurso> recursos = new ArrayList<>();
+        for (RecursoRequestDto dto : recursosDto) {
+            if (dto.getTipo() == null) continue; // ignora recursos sin tipo
+            recursos.add(toRecurso(dto));
+        }
         Map<TipoRecurso, Integer> resultado = service.asignarRecursosDisponibles(ubicacionId, recursos);
         Map<String, Integer> resultadoDto = new HashMap<>();
         resultado.forEach((k, v) -> resultadoDto.put(k.name(), v));
@@ -89,7 +98,6 @@ public class NodoDistribucionController {
 
     // Conversión a Recurso
     private Recurso toRecurso(RecursoRequestDto dto) {
-        return new Recurso(dto.getId(), dto.getNombre(), TipoRecurso.valueOf(dto.getTipo()), dto.getCantidad());
+        return new Recurso(dto.getId(), dto.getNombre(), dto.getTipo(), dto.getCantidad());
     }
 }
-
