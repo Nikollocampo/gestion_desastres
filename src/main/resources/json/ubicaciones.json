@@ -1,0 +1,13 @@
+[ {
+  "id" : "0c741173-ff83-4c24-8e1f-ff158354276e",
+  "nombre" : "Hospital Central",
+  "calle" : "10",
+  "carrera" : "20",
+  "tipoUbicacion" : "CENTRO_AYUDA"
+}, {
+  "id" : "876e1c64-ab52-47ab-974b-5deca443f2dd",
+  "nombre" : "Refugio Norte",
+  "calle" : "15",
+  "carrera" : "30",
+  "tipoUbicacion" : "REFUGIO"
+} ]
