@@ -4,17 +4,19 @@ import java.util.List;
 import java.util.Map;
 
 public class GrafoResponseDto {
-    private Map<UbicacionResponseDto, List<RutaResponseDto>> adyacencias;
+    private Map<String, List<RutaResponseDto>> adyacencias;
 
     public GrafoResponseDto() {}
 
-    public GrafoResponseDto(Map<UbicacionResponseDto, List<RutaResponseDto>> adyacencias) {
+    public GrafoResponseDto(Map<String, List<RutaResponseDto>> adyacencias) {
         this.adyacencias = adyacencias;
     }
-    public Map<UbicacionResponseDto, List<RutaResponseDto>> getAdyacencias() {
+
+    public Map<String, List<RutaResponseDto>> getAdyacencias() {
         return adyacencias;
     }
-    public void setAdyacencias(Map<UbicacionResponseDto, List<RutaResponseDto>> adyacencias) {
+
+    public void setAdyacencias(Map<String, List<RutaResponseDto>> adyacencias) {
         this.adyacencias = adyacencias;
     }
 }

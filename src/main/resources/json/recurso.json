@@ -2,7 +2,7 @@
   "id" : "4",
   "nombre" : "Paracetamol",
   "tipo" : "MEDICAMENTO",
-  "cantidad" : 110,
+  "cantidad" : 10,
   "ubicacion" : {
     "id" : "U1",
     "nombre" : "Centro Salud",

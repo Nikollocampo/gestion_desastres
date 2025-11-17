@@ -82,7 +82,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    @PostMapping("/id/asignar-recursos")
+    @PostMapping("/{id}/asignar-recursos")
     public ResponseEntity<Map<String, Integer>> asignarRecursos(
             @PathVariable String id,
             @RequestBody List<RecursoRequestDto> recursosDto) {
@@ -103,7 +103,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    @GetMapping("/id/estructura")
+    @GetMapping("/{id}/estructura")
     public ResponseEntity<Map<String, Object>> obtenerEstructura(@PathVariable String id) {
         try {
             Map<String, Object> estructura = arbolService.obtenerEstructura(id);
@@ -116,7 +116,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    @GetMapping("/id/imprimir")
+    @GetMapping("/{id}/imprimir")
     public ResponseEntity<String> imprimirEstructura(@PathVariable String id) {
         try {
             String estructura = arbolService.imprimirEstructura(id);

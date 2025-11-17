@@ -11,10 +11,7 @@ import com.example.estructuras.repository.GrafoJsonRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,19 +27,24 @@ public class GrafoNoDirigidoService {
     public GrafoResponseDto obtenerGrafo() throws IOException {
         GrafoNoDirigido grafo = grafoJsonRepository.cargarGrafo();
 
-        Map<UbicacionResponseDto, List<RutaResponseDto>> adyacenciasDto = new HashMap<>();
+        Map<String, List<RutaResponseDto>> adyacenciasLegible = new LinkedHashMap<>();
 
         for (Ubicacion origen : grafo.obtenerUbicaciones()) {
             UbicacionResponseDto origenDto = mapearUbicacion(origen);
 
             List<RutaResponseDto> rutasDto = grafo.obtenerRutasDesde(origen).stream()
-                    .map(ruta -> mapearRutaConPeso(ruta))
+                    .map(this::mapearRutaConPeso)
                     .collect(Collectors.toList());
 
-            adyacenciasDto.put(origenDto, rutasDto);
+            // Solo incluir nodos que tengan rutas, si quieres
+            if (!rutasDto.isEmpty()) {
+                String clave = origenDto.getNombre() + " (" + origenDto.getId() + ")";
+                adyacenciasLegible.put(clave, rutasDto);
+            }
         }
 
-        return new GrafoResponseDto(adyacenciasDto);
+        // Devolver un DTO con claves más legibles
+        return new GrafoResponseDto(adyacenciasLegible);
     }
 
     private UbicacionResponseDto mapearUbicacion(Ubicacion ubicacion) {
