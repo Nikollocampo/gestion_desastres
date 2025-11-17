@@ -54,21 +54,12 @@ public class OperadorEmergenciaController {
 
     // ========== ENDPOINTS DE OPERACIONES DE EMERGENCIA ==========
 
-    /**
-     * Monitorear todas las ubicaciones disponibles
-     * GET /api/operadores/monitorear-ubicaciones
-     */
     @GetMapping("/monitorear-ubicaciones")
     public ResponseEntity<List<String>> monitorearUbicaciones() throws IOException {
         List<String> resultado = operadorService.monitorearUbicaciones();
         return ResponseEntity.ok(resultado);
     }
 
-    /**
-     * Actualizar la situación de un desastre
-     * PUT /api/operadores/desastres/{idDesastre}/actualizar
-     * Body: { "personasAfectadas": 500, "magnitud": 5 }
-     */
     @PutMapping("/desastres/{idDesastre}/actualizar")
     public ResponseEntity<Map<String, String>> actualizarSituacion(
             @PathVariable String idDesastre,
@@ -86,10 +77,6 @@ public class OperadorEmergenciaController {
         return ResponseEntity.ok(Map.of("mensaje", mensaje));
     }
 
-    /**
-     * Gestionar evacuaciones por prioridad y riesgo de zona
-     * GET /api/operadores/gestionar-evacuaciones
-     */
     @GetMapping("/gestionar-evacuaciones")
     public ResponseEntity<List<String>> gestionarEvacuaciones() throws IOException {
         List<String> resultado = operadorService.gestionarEvacuaciones();

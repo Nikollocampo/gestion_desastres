@@ -20,9 +20,6 @@ public class MapaRecursosController {
     @Autowired
     private MapaRecursosService mapaRecursosService;
 
-    /**
-     * Inicializa el mapa de recursos con datos del repositorio
-     */
     @PostMapping("/inicializar")
     public ResponseEntity<String> inicializar() {
         try {
@@ -33,10 +30,7 @@ public class MapaRecursosController {
         }
     }
 
-    /**
-     * Obtiene todos los recursos de una ubicación específica
-     */
-    @GetMapping("/ubicacion/{ubicacionId}")
+    @GetMapping("/ubicacion/ubicacionId")
     public ResponseEntity<InventarioUbicacionResponseDto> obtenerRecursosPorUbicacion(@PathVariable String ubicacionId) {
         Map<TipoRecurso, Recurso> recursos = mapaRecursosService.obtenerRecursosPorUbicacion(ubicacionId);
 
@@ -55,10 +49,7 @@ public class MapaRecursosController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Obtiene un recurso específico de una ubicación
-     */
-    @GetMapping("/ubicacion/{ubicacionId}/recurso/{tipoRecurso}")
+    @GetMapping("/ubicacion/ubicacionId/recurso/{tipoRecurso}")
     public ResponseEntity<RecursoResponseDto> obtenerRecursoEspecifico(
             @PathVariable String ubicacionId,
             @PathVariable String tipoRecurso) {
@@ -72,10 +63,7 @@ public class MapaRecursosController {
         return ResponseEntity.ok(convertirARecursoDto(recurso));
     }
 
-    /**
-     * Agrega un recurso a una ubicación
-     */
-    @PostMapping("/ubicacion/{ubicacionId}/recurso")
+    @PostMapping("/ubicacion/ubicacionId/recurso")
     public ResponseEntity<String> agregarRecurso(
             @PathVariable String ubicacionId,
             @RequestBody RecursoRequestDto recursoDto) {
@@ -89,10 +77,7 @@ public class MapaRecursosController {
         }
     }
 
-    /**
-     * Consume un recurso de una ubicación
-     */
-    @PostMapping("/ubicacion/{ubicacionId}/consumir")
+    @PostMapping("/ubicacion/ubicacionId/consumir")
     public ResponseEntity<String> consumirRecurso(
             @PathVariable String ubicacionId,
             @RequestBody ConsumirRecursoRequestDto request) {
@@ -106,9 +91,6 @@ public class MapaRecursosController {
         }
     }
 
-    /**
-     * Transfiere recursos entre dos ubicaciones
-     */
     @PostMapping("/transferir")
     public ResponseEntity<String> transferirRecurso(@RequestBody TransferirRecursoRequestDto request) {
         TipoRecurso tipo = TipoRecurso.valueOf(request.getTipoRecurso());
@@ -126,9 +108,6 @@ public class MapaRecursosController {
         }
     }
 
-    /**
-     * Obtiene todas las ubicaciones con recursos
-     */
     @GetMapping("/ubicaciones")
     public ResponseEntity<List<UbicacionResponseDto>> obtenerUbicaciones() {
         Set<Ubicacion> ubicaciones = mapaRecursosService.obtenerTodasLasUbicaciones();
@@ -139,9 +118,6 @@ public class MapaRecursosController {
         return ResponseEntity.ok(ubicacionesDto);
     }
 
-    /**
-     * Obtiene el inventario completo (todas las ubicaciones con sus recursos)
-     */
     @GetMapping("/inventario-completo")
     public ResponseEntity<List<InventarioUbicacionResponseDto>> obtenerInventarioCompleto() {
         Map<String, Map<TipoRecurso, Recurso>> inventario = mapaRecursosService.obtenerInventarioCompleto();
@@ -163,10 +139,7 @@ public class MapaRecursosController {
         return ResponseEntity.ok(inventarioDto);
     }
 
-    /**
-     * Busca un tipo de recurso en todas las ubicaciones
-     */
-    @GetMapping("/buscar/{tipoRecurso}")
+    @GetMapping("/buscar/tipoRecurso")
     public ResponseEntity<Map<String, Integer>> buscarRecursoPorTipo(@PathVariable String tipoRecurso) {
         TipoRecurso tipo = TipoRecurso.valueOf(tipoRecurso);
         Map<String, Integer> resultado = mapaRecursosService.buscarRecursoPorTipo(tipo);

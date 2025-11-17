@@ -20,9 +20,6 @@ public class ArbolDistribucionController {
     @Autowired
     private ArbolDistribucionService arbolService;
 
-    /**
-     * Obtiene todos los árboles de distribución
-     */
     @GetMapping
     public ResponseEntity<List<ArbolDistribucionResponseDto>> getAll() {
         try {
@@ -33,9 +30,6 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Obtiene un árbol por ID
-     */
     @GetMapping("/{id}")
     public ResponseEntity<ArbolDistribucionResponseDto> getById(@PathVariable String id) {
         try {
@@ -49,9 +43,6 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Crea un nuevo árbol de distribución
-     */
     @PostMapping
     public ResponseEntity<ArbolDistribucionResponseDto> crear(@RequestBody ArbolDistribucionRequestDto request) {
         try {
@@ -62,9 +53,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Actualiza la raíz de un árbol
-     */
+
     @PutMapping("/{id}/raiz/{raizId}")
     public ResponseEntity<ArbolDistribucionResponseDto> actualizarRaiz(
             @PathVariable String id,
@@ -80,10 +69,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Elimina un árbol de distribución
-     */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/id")
     public ResponseEntity<Void> eliminar(@PathVariable String id) {
         try {
             boolean eliminado = arbolService.eliminar(id);
@@ -96,10 +82,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Asigna recursos usando el árbol de distribución
-     */
-    @PostMapping("/{id}/asignar-recursos")
+    @PostMapping("/id/asignar-recursos")
     public ResponseEntity<Map<String, Integer>> asignarRecursos(
             @PathVariable String id,
             @RequestBody List<RecursoRequestDto> recursosDto) {
@@ -120,10 +103,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Obtiene la estructura jerárquica del árbol
-     */
-    @GetMapping("/{id}/estructura")
+    @GetMapping("/id/estructura")
     public ResponseEntity<Map<String, Object>> obtenerEstructura(@PathVariable String id) {
         try {
             Map<String, Object> estructura = arbolService.obtenerEstructura(id);
@@ -136,10 +116,7 @@ public class ArbolDistribucionController {
         }
     }
 
-    /**
-     * Imprime la estructura del árbol (para visualización/debug)
-     */
-    @GetMapping("/{id}/imprimir")
+    @GetMapping("/id/imprimir")
     public ResponseEntity<String> imprimirEstructura(@PathVariable String id) {
         try {
             String estructura = arbolService.imprimirEstructura(id);
@@ -149,7 +126,6 @@ public class ArbolDistribucionController {
         }
     }
 
-    // Método auxiliar de conversión
     private Recurso toRecurso(RecursoRequestDto dto) {
         return new Recurso(
             dto.getId(),
