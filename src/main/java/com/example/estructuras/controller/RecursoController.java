@@ -1,5 +1,6 @@
 package com.example.estructuras.controller;
 
+import com.example.estructuras.Mapping.dto.ObtenerRecursoPorIdRequestDto;
 import com.example.estructuras.Mapping.dto.RecursoRequestDto;
 import com.example.estructuras.Mapping.dto.RecursoResponseDto;
 import com.example.estructuras.service.RecursoService;
@@ -20,40 +21,47 @@ public class RecursoController {
         this.recursoService = recursoService;
     }
 
-    @PostMapping
-    public ResponseEntity<RecursoRequestDto> crear(@RequestBody RecursoRequestDto dto) throws IOException {
-        RecursoRequestDto response = recursoService.crear(dto);
+    @PostMapping("/crear")
+    public ResponseEntity<RecursoResponseDto> crear(@RequestBody RecursoRequestDto dto) throws IOException {
+        RecursoResponseDto response = recursoService.crearYRetornarResponse(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<RecursoRequestDto>> listar() throws IOException {
         return ResponseEntity.ok(recursoService.listar());
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<RecursoRequestDto> obtenerPorId(@PathVariable String id) throws IOException {
-        return ResponseEntity.ok(recursoService.obtenerPorId(id));
+
+    @PostMapping("/id")
+    public ResponseEntity<RecursoResponseDto> obtenerPorId(@RequestBody ObtenerRecursoPorIdRequestDto request) throws IOException {
+        try {
+            RecursoResponseDto response = recursoService.obtenerResponsePorId(request.getId());
+            if (response == null) return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PutMapping("/id")
+    @PutMapping("/id/{id}")
     public ResponseEntity<RecursoRequestDto> actualizar(@PathVariable String id, @RequestBody RecursoRequestDto dto) throws IOException {
         dto.setId(id); // Asegura que el ID del path se use en la actualización
         return ResponseEntity.ok(recursoService.actualizar(dto));
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/id/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable String id) throws IOException {
         recursoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/agregar")
+    @PatchMapping("/agregar/{id}")
     public ResponseEntity<RecursoRequestDto> agregarCantidad(@PathVariable String id, @RequestParam int cantidad) throws IOException {
         return ResponseEntity.ok(recursoService.agregarCantidad(id, cantidad));
     }
 
-    @PatchMapping("/consumir")
+    @PatchMapping("/consumir/{id}")
     public ResponseEntity<String> consumir(@PathVariable String id, @RequestParam int cantidad) throws IOException {
         boolean resultado = recursoService.consumir(id, cantidad);
         if (resultado) {

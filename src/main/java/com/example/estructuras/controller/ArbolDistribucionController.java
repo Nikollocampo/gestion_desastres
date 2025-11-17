@@ -130,7 +130,7 @@ public class ArbolDistribucionController {
         return new Recurso(
             dto.getId(),
             dto.getNombre(),
-            TipoRecurso.valueOf(dto.getTipo()),
+            dto.getTipo(),
             dto.getCantidad()
         );
     }

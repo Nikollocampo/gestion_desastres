@@ -1,0 +1,25 @@
+[ {
+  "id" : "1",
+  "nombre" : "Paracetamol",
+  "tipo" : "MEDICAMENTO",
+  "cantidad" : 150,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "4",
+  "nombre" : "Paracetamol",
+  "tipo" : "MEDICAMENTO",
+  "cantidad" : 150,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+} ]

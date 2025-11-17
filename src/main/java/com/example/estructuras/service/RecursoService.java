@@ -1,6 +1,7 @@
 package com.example.estructuras.service;
 
 import com.example.estructuras.Mapping.dto.RecursoRequestDto;
+import com.example.estructuras.Mapping.dto.RecursoResponseDto;
 import com.example.estructuras.Mapping.dto.UbicacionResponseDto;
 import com.example.estructuras.model.Recurso;
 import com.example.estructuras.model.TipoRecurso;
@@ -32,23 +33,62 @@ public class RecursoService {
         if (dto == null) {
             throw new IllegalArgumentException("RecursoRequestDto no puede ser nulo");
         }
-        Recurso recurso = toEntity(dto);
-        // Generar ID si no viene
-        if (recurso.getId() == null || recurso.getId().isEmpty()) {
-            recurso.setId(UUID.randomUUID().toString());
+        String id = dto.getId() != null ? dto.getId().toString().trim() : null;
+        String idToUse = (id == null || id.isEmpty()) ? UUID.randomUUID().toString() : id;
+        List<Recurso> recursos = repository.findAll();
+        for (Recurso r : recursos) {
+            String rid = r.getId() != null ? r.getId().toString().trim() : "";
+            if (rid.equals(idToUse)) {
+                throw new IllegalArgumentException("Ya existe un recurso con el id: " + idToUse);
+            }
         }
+        Recurso recurso = toEntity(dto);
+        recurso.setId(idToUse); // Usa el id recibido o generado
         repository.add(recurso);
         return toDto(recurso);
     }
 
+    public RecursoResponseDto crearYRetornarResponse(RecursoRequestDto dto) throws IOException {
+        String id = dto.getId() != null ? dto.getId().toString().trim() : null;
+        String idToUse = (id == null || id.isEmpty()) ? UUID.randomUUID().toString() : id;
+        List<Recurso> recursos = repository.findAll();
+        for (Recurso r : recursos) {
+            String rid = r.getId() != null ? r.getId().toString().trim() : "";
+            if (rid.equals(idToUse)) {
+                throw new IllegalArgumentException("Ya existe un recurso con el id: " + idToUse);
+            }
+        }
+        Recurso recurso = toEntity(dto);
+        recurso.setId(idToUse);
+        repository.add(recurso);
+        return toResponseDto(recurso);
+    }
+
     public RecursoRequestDto obtenerPorId(String id) throws IOException {
+        final String idToFind = id != null ? id.trim() : null;
         Recurso recurso = repository.findAll()
                 .stream()
-                .filter(r -> id.equals(r.getId()))
+                .filter(r -> {
+                    String rid = r.getId() != null ? r.getId().toString().trim() : "";
+                    return rid.equals(idToFind);
+                })
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Recurso no encontrado: " + id));
-
         return toDto(recurso);
+    }
+
+    public RecursoResponseDto obtenerResponsePorId(String id) throws IOException {
+        final String idToFind = id != null ? id.trim() : null;
+        Recurso recurso = repository.findAll()
+                .stream()
+                .filter(r -> {
+                    String rid = r.getId() != null ? r.getId().toString().trim() : "";
+                    return rid.equals(idToFind);
+                })
+                .findFirst()
+                .orElse(null);
+        if (recurso == null) return null;
+        return toResponseDto(recurso);
     }
 
     public RecursoRequestDto actualizar(RecursoRequestDto dto) throws IOException {
@@ -87,15 +127,14 @@ public class RecursoService {
     }
 
     public Recurso toEntity(RecursoRequestDto dto) {
+        String id = dto.getId() != null ? dto.getId().toString().trim() : null;
         Recurso r = new Recurso(
-                dto.getId(),
+                id,
                 dto.getNombre(),
-                TipoRecurso.valueOf(dto.getTipo()),
+                dto.getTipo(),
                 dto.getCantidad()
         );
-
         if (dto.getUbicacion() != null) {
-            // Este UbicacionDto es el tuyo original
             Ubicacion u = new Ubicacion(
                     dto.getUbicacion().getId(),
                     dto.getUbicacion().getNombre(),
@@ -105,7 +144,6 @@ public class RecursoService {
             );
             r.setUbicacion(u);
         }
-
         return r;
     }
 
@@ -114,7 +152,7 @@ public class RecursoService {
 
         dto.setId(r.getId());
         dto.setNombre(r.getNombre());
-        dto.setTipo(r.getTipo().name());
+        dto.setTipo(r.getTipo()); // Usar el enum directamente
         dto.setCantidad(r.getCantidad());
 
         if (r.getUbicacion() != null) {
@@ -128,6 +166,25 @@ public class RecursoService {
             dto.setUbicacion(u);
         }
 
+        return dto;
+    }
+
+    public RecursoResponseDto toResponseDto(Recurso r) {
+        RecursoResponseDto dto = new RecursoResponseDto();
+        dto.setId(r.getId());
+        dto.setNombre(r.getNombre());
+        dto.setTipo(r.getTipo() != null ? r.getTipo().name() : null);
+        dto.setCantidad(r.getCantidad());
+        if (r.getUbicacion() != null) {
+            UbicacionResponseDto u = new UbicacionResponseDto(
+                    r.getUbicacion().getId(),
+                    r.getUbicacion().getNombre(),
+                    r.getUbicacion().getCalle(),
+                    r.getUbicacion().getCarrera(),
+                    r.getUbicacion().getTipoUbicacion()
+            );
+            dto.setUbicacion(u);
+        }
         return dto;
     }
 
