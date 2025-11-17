@@ -1,42 +1,46 @@
 package com.example.estructuras.model;
 
-import java.util.List;
-
+/**
+ * Modelo POJO para ArbolDistribucion.
+ * Solo contiene datos, sin lógica de negocio.
+ * La lógica está en ArbolDistribucionService.
+ * raizId hace referencia al ID (campo id) de un NodoDistribucion, no al id de la ubicación.
+ */
 public class ArbolDistribucion {
-    private NodoDistribucion raiz;
+    private String id;
+    private String nombre;
+    private String raizId; // ID del NodoDistribucion raíz
 
-    public ArbolDistribucion(NodoDistribucion raiz) {
-        this.raiz = raiz;
+    public ArbolDistribucion() {}
+
+    public ArbolDistribucion(String id, String nombre, String raizId) {
+        this.id = id;
+        this.nombre = nombre;
+        this.raizId = raizId;
     }
 
-    public void asignarRecursos(List<Recurso> recursosDisponibles) {
-        if (raiz == null) {
-            System.out.println("Arbol vacío.");
-            return;
-        }
-        System.out.println("=== Inicio asignación por Árbol de distribución ===");
-        raiz.asignarRecursosDisponibles(recursosDisponibles);
-        System.out.println("=== Fin asignación por Árbol ===");
+    // Getters y Setters
+    public String getId() {
+        return id;
     }
 
-    public void imprimirEstructura() {
-        imprimirNodo(raiz, 0);
+    public void setId(String id) {
+        this.id = id;
     }
 
-    private void imprimirNodo(NodoDistribucion nodo, int nivel) {
-        if (nodo == null) return;
-        String pref = "  ".repeat(Math.max(0, nivel));
-        System.out.println(pref + "- " + nodo.getUbicacion().getNombre() + " necesidades: " + nodo.getNecesidades());
-        for (NodoDistribucion hijo : nodo.getHijos()) {
-            imprimirNodo(hijo, nivel + 1);
-        }
+    public String getNombre() {
+        return nombre;
     }
 
-    public NodoDistribucion getRaiz() {
-        return raiz;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setRaiz(NodoDistribucion raiz) {
-        this.raiz = raiz;
+    public String getRaizId() {
+        return raizId;
+    }
+
+    public void setRaizId(String raizId) {
+        this.raizId = raizId;
     }
 }

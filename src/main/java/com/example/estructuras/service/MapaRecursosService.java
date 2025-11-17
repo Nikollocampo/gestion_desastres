@@ -25,197 +25,144 @@ public class MapaRecursosService {
     @Autowired
     private RecursoJsonRepository recursoRepo;
 
-    /**
-     * Crea un nuevo mapa de recursos
-     */
+    private static final String DEFAULT_MAPA_ID = "default";
+
+    // ================= API ORIGINAL USADA POR EL CONTROLLER =================
+
+    /** Inicializa el mapa por defecto cargando ubicaciones y recursos existentes */
+    public void inicializarMapa() throws IOException {
+        MapaRecursos mapa = obtenerMapaPrincipal();
+        // Cargar ubicaciones y asegurar entrada vacía
+        for (Ubicacion u : ubicacionRepo.findAll()) {
+            mapa.getMapaRecursos().computeIfAbsent(u.getId(), k -> new HashMap<>());
+        }
+        // Cargar recursos y ubicarlos según su ubicacion (si existe)
+        for (Recurso r : recursoRepo.findAll()) {
+            if (r.getUbicacion() != null) {
+                String idUb = r.getUbicacion().getId();
+                mapa.getMapaRecursos().computeIfAbsent(idUb, k -> new HashMap<>())
+                        .put(r.getTipo().name(), r);
+            }
+        }
+        guardarMapa(mapa);
+    }
+
+    /** Obtiene recursos por ubicación (mapa por defecto) */
+    public Map<TipoRecurso, Recurso> obtenerRecursosPorUbicacion(String ubicacionId) {
+        MapaRecursos mapa = obtenerMapaPrincipal();
+        Map<String, Recurso> internos = mapa.getMapaRecursos().getOrDefault(ubicacionId, Collections.emptyMap());
+        Map<TipoRecurso, Recurso> resultado = new HashMap<>();
+        internos.forEach((k, v) -> {
+            try { resultado.put(TipoRecurso.valueOf(k), v); } catch (IllegalArgumentException ignored) { }
+        });
+        return resultado;
+    }
+
+    /** Agrega un recurso a una ubicación (crea la ubicación si no existe en el mapa) */
+    public boolean agregarRecurso(String ubicacionId, Recurso recurso) {
+        MapaRecursos mapa = obtenerMapaPrincipal();
+        mapa.getMapaRecursos().computeIfAbsent(ubicacionId, k -> new HashMap<>());
+        Map<String, Recurso> recursosUb = mapa.getMapaRecursos().get(ubicacionId);
+        String clave = recurso.getTipo().name();
+        if (recursosUb.containsKey(clave)) {
+            // Sumar cantidades
+            Recurso existente = recursosUb.get(clave);
+            existente.setCantidad(existente.getCantidad() + recurso.getCantidad());
+        } else {
+            recursosUb.put(clave, recurso);
+        }
+        try { guardarMapa(mapa); } catch (IOException ignored) {}
+        return true;
+    }
+
+    /** Obtiene recurso específico de una ubicación */
+    public Recurso obtenerRecursoEspecifico(String ubicacionId, TipoRecurso tipo) {
+        return obtenerMapaPrincipal().getMapaRecursos()
+                .getOrDefault(ubicacionId, Collections.emptyMap())
+                .get(tipo.name());
+    }
+
+    /** Consume cantidad de recurso, si hay suficiente */
+    public boolean consumirRecurso(String ubicacionId, TipoRecurso tipo, int cantidad) {
+        Recurso recurso = obtenerRecursoEspecifico(ubicacionId, tipo);
+        if (recurso == null || recurso.getCantidad() < cantidad) return false;
+        recurso.setCantidad(recurso.getCantidad() - cantidad);
+        try { guardarMapa(obtenerMapaPrincipal()); } catch (IOException ignored) {}
+        return true;
+    }
+
+    /** Transfiere recurso entre dos ubicaciones */
+    public boolean transferirRecurso(String origenId, String destinoId, TipoRecurso tipo, int cantidad) {
+        if (!consumirRecurso(origenId, tipo, cantidad)) return false;
+        Recurso base = obtenerRecursoEspecifico(origenId, tipo); // después de consumir puede quedar null o con menos
+        Recurso nuevo = new Recurso(
+                (base != null ? base.getId() : UUID.randomUUID().toString()) + "_transf",
+                (base != null ? base.getNombre() : tipo.name()),
+                tipo,
+                cantidad
+        );
+        agregarRecurso(destinoId, nuevo);
+        return true;
+    }
+
+    /** Obtiene todas las ubicaciones del mapa por defecto como objetos (si existen en repositorio) */
+    public Set<Ubicacion> obtenerTodasLasUbicaciones() {
+        MapaRecursos mapa = obtenerMapaPrincipal();
+        Set<Ubicacion> resultado = new HashSet<>();
+        for (String idUb : mapa.getMapaRecursos().keySet()) {
+            try {
+                ubicacionRepo.findById(idUb).ifPresent(resultado::add);
+            } catch (IOException ignored) {}
+        }
+        return resultado;
+    }
+
+    /** Inventario completo (ubicacion -> (TipoRecurso -> Recurso)) */
+    public Map<String, Map<TipoRecurso, Recurso>> obtenerInventarioCompleto() {
+        Map<String, Map<TipoRecurso, Recurso>> inv = new HashMap<>();
+        MapaRecursos mapa = obtenerMapaPrincipal();
+        mapa.getMapaRecursos().forEach((ubId, recursosStr) -> {
+            Map<TipoRecurso, Recurso> conv = new HashMap<>();
+            recursosStr.forEach((k, v) -> {
+                try { conv.put(TipoRecurso.valueOf(k), v); } catch (IllegalArgumentException ignored) { }
+            });
+            inv.put(ubId, conv);
+        });
+        return inv;
+    }
+
+    /** Busca disponibilidad total por tipo en todas las ubicaciones */
+    public Map<String, Integer> buscarRecursoPorTipo(TipoRecurso tipo) {
+        Map<String, Integer> res = new HashMap<>();
+        MapaRecursos mapa = obtenerMapaPrincipal();
+        mapa.getMapaRecursos().forEach((ubId, recursos) -> {
+            Recurso r = recursos.get(tipo.name());
+            if (r != null && r.getCantidad() > 0) res.put(ubId, r.getCantidad());
+        });
+        return res;
+    }
+
+    // ================= API EXTENDIDA (multi-mapa) =================
     public MapaRecursos crearMapa(String id, String nombre) throws IOException {
         MapaRecursos mapa = new MapaRecursos(id, nombre);
         mapaRecursosRepo.save(mapa);
         return mapa;
     }
+    public MapaRecursos obtenerMapaPorId(String id) throws IOException {return mapaRecursosRepo.findById(id).orElse(null);}
+    public boolean eliminarMapa(String mapaId) throws IOException {return mapaRecursosRepo.deleteById(mapaId);}
 
-    /**
-     * Obtiene un mapa por ID
-     */
-    public MapaRecursos obtenerMapaPorId(String id) throws IOException {
-        return mapaRecursosRepo.findById(id).orElse(null);
-    }
-
-    /**
-     * Agrega una ubicación al mapa
-     */
-    public boolean agregarUbicacion(String mapaId, String ubicacionId) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return false;
-
-        Map<String, Map<String, Recurso>> mapaRecursos = mapa.getMapaRecursos();
-        if (!mapaRecursos.containsKey(ubicacionId)) {
-            mapaRecursos.put(ubicacionId, new HashMap<>());
-            mapaRecursosRepo.save(mapa);
-            return true;
+    // ================= Helpers =================
+    private MapaRecursos obtenerMapaPrincipal() {
+        try {
+            MapaRecursos existente = mapaRecursosRepo.findById(DEFAULT_MAPA_ID).orElse(null);
+            if (existente != null) return existente;
+            MapaRecursos nuevo = new MapaRecursos(DEFAULT_MAPA_ID, "Mapa Principal");
+            mapaRecursosRepo.save(nuevo);
+            return nuevo;
+        } catch (IOException e) {
+            // Si falla repositorio, usar uno en memoria (no persistente)
+            return new MapaRecursos(DEFAULT_MAPA_ID, "Mapa Memoria");
         }
-        return false;
     }
-
-    /**
-     * Agrega un recurso a una ubicación específica
-     */
-    public boolean agregarRecurso(String mapaId, String ubicacionId, Recurso recurso) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return false;
-
-        Map<String, Map<String, Recurso>> mapaRecursos = mapa.getMapaRecursos();
-
-        // Asegurar que la ubicación existe
-        if (!mapaRecursos.containsKey(ubicacionId)) {
-            mapaRecursos.put(ubicacionId, new HashMap<>());
-        }
-
-        Map<String, Recurso> recursosUbicacion = mapaRecursos.get(ubicacionId);
-        String tipoRecurso = recurso.getTipo().name();
-
-        if (recursosUbicacion.containsKey(tipoRecurso)) {
-            // Si ya existe, actualizar cantidad
-            Recurso existente = recursosUbicacion.get(tipoRecurso);
-            existente.setCantidad(existente.getCantidad() + recurso.getCantidad());
-        } else {
-            // Si no existe, agregar nuevo
-            recursosUbicacion.put(tipoRecurso, recurso);
-        }
-
-        mapaRecursosRepo.save(mapa);
-        return true;
-    }
-
-    /**
-     * Obtiene todos los recursos de una ubicación
-     */
-    public Map<String, Recurso> obtenerRecursosPorUbicacion(String mapaId, String ubicacionId) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return new HashMap<>();
-
-        return mapa.getMapaRecursos().getOrDefault(ubicacionId, new HashMap<>());
-    }
-
-    /**
-     * Obtiene un recurso específico de una ubicación
-     */
-    public Recurso obtenerRecursoEspecifico(String mapaId, String ubicacionId, TipoRecurso tipo) throws IOException {
-        Map<String, Recurso> recursos = obtenerRecursosPorUbicacion(mapaId, ubicacionId);
-        return recursos.get(tipo.name());
-    }
-
-    /**
-     * Consume una cantidad de recurso de una ubicación
-     */
-    public boolean consumirRecurso(String mapaId, String ubicacionId, TipoRecurso tipo, int cantidad) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return false;
-
-        Map<String, Recurso> recursos = mapa.getMapaRecursos().get(ubicacionId);
-        if (recursos == null) return false;
-
-        Recurso recurso = recursos.get(tipo.name());
-        if (recurso == null) return false;
-
-        if (recurso.getCantidad() >= cantidad) {
-            recurso.setCantidad(recurso.getCantidad() - cantidad);
-            mapaRecursosRepo.save(mapa);
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Transfiere recursos entre dos ubicaciones
-     */
-    public boolean transferirRecurso(String mapaId, String origenId, String destinoId, TipoRecurso tipo, int cantidad) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return false;
-
-        Map<String, Map<String, Recurso>> mapaRecursos = mapa.getMapaRecursos();
-
-        // Verificar que ambas ubicaciones existen
-        if (!mapaRecursos.containsKey(origenId) || !mapaRecursos.containsKey(destinoId)) {
-            return false;
-        }
-
-        Map<String, Recurso> recursosOrigen = mapaRecursos.get(origenId);
-        Map<String, Recurso> recursosDestino = mapaRecursos.get(destinoId);
-
-        Recurso recursoOrigen = recursosOrigen.get(tipo.name());
-        if (recursoOrigen == null || recursoOrigen.getCantidad() < cantidad) {
-            return false;
-        }
-
-        // Consumir del origen
-        recursoOrigen.setCantidad(recursoOrigen.getCantidad() - cantidad);
-
-        // Agregar al destino
-        Recurso recursoDestino = recursosDestino.get(tipo.name());
-        if (recursoDestino != null) {
-            recursoDestino.setCantidad(recursoDestino.getCantidad() + cantidad);
-        } else {
-            Recurso nuevo = new Recurso(
-                recursoOrigen.getId() + "_transferred",
-                recursoOrigen.getNombre(),
-                tipo,
-                cantidad
-            );
-            recursosDestino.put(tipo.name(), nuevo);
-        }
-
-        mapaRecursosRepo.save(mapa);
-        return true;
-    }
-
-    /**
-     * Obtiene todas las ubicaciones de un mapa
-     */
-    public Set<String> obtenerUbicaciones(String mapaId) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return new HashSet<>();
-
-        return mapa.getMapaRecursos().keySet();
-    }
-
-    /**
-     * Obtiene el inventario completo del mapa
-     */
-    public Map<String, Map<String, Recurso>> obtenerInventarioCompleto(String mapaId) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return new HashMap<>();
-
-        return mapa.getMapaRecursos();
-    }
-
-    /**
-     * Busca recursos disponibles de un tipo específico en todas las ubicaciones
-     */
-    public Map<String, Integer> buscarRecursoPorTipo(String mapaId, TipoRecurso tipo) throws IOException {
-        MapaRecursos mapa = obtenerMapaPorId(mapaId);
-        if (mapa == null) return new HashMap<>();
-
-        Map<String, Integer> resultado = new HashMap<>();
-
-        for (Map.Entry<String, Map<String, Recurso>> entry : mapa.getMapaRecursos().entrySet()) {
-            String ubicacionId = entry.getKey();
-            Recurso recurso = entry.getValue().get(tipo.name());
-
-            if (recurso != null && recurso.getCantidad() > 0) {
-                resultado.put(ubicacionId, recurso.getCantidad());
-            }
-        }
-
-        return resultado;
-    }
-
-    /**
-     * Elimina un mapa
-     */
-    public boolean eliminarMapa(String mapaId) throws IOException {
-        return mapaRecursosRepo.deleteById(mapaId);
-    }
+    private void guardarMapa(MapaRecursos mapa) throws IOException { mapaRecursosRepo.save(mapa); }
 }
-

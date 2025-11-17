@@ -224,4 +224,8 @@ public class NodoDistribucionService {
         dto.setHijos(hijosDto);
         return dto;
     }
+
+    public NodoDistribucion obtenerNodoPorId(String nodoId) {
+        return findAll().stream().filter(n -> n.getId().equals(nodoId)).findFirst().orElse(null);
+    }
 }

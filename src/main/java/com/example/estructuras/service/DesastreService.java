@@ -3,6 +3,7 @@ package com.example.estructuras.service;
 import com.example.estructuras.Mapping.dto.DesastreResponseDto;
 import com.example.estructuras.Mapping.dto.EquipoResponseDto;
 import com.example.estructuras.Mapping.dto.UbicacionResponseDto;
+import com.example.estructuras.model.ColaPrioridad;
 import com.example.estructuras.model.Desastre;
 import com.example.estructuras.model.Equipo;
 import com.example.estructuras.model.Ubicacion;
@@ -10,6 +11,8 @@ import com.example.estructuras.repository.DesastreJsonRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -102,6 +105,92 @@ public class DesastreService {
                                 e.getUbicacion().getTipoUbicacion()
                         )
                 ))
+                .collect(Collectors.toList());
+    }
+
+    // ==================== MÉTODOS CON COLA DE PRIORIDAD ====================
+
+    /**
+     * Obtiene todos los desastres ordenados por prioridad (de mayor a menor).
+     * Usa ColaPrioridad internamente para ordenar.
+     */
+    public List<DesastreResponseDto> obtenerDesastresPorPrioridad() throws IOException {
+        List<Desastre> desastres = desastreRepository.findAll();
+
+        // Crear cola de prioridad con comparador personalizado (mayor prioridad primero)
+        // Menor número = mayor prioridad (1=Alta, 2=Media, 3=Baja)
+        Comparator<Desastre> comparadorPrioridad = (d1, d2) -> {
+            int nivel1 = d1.asignarNivelPrioridad();
+            int nivel2 = d2.asignarNivelPrioridad();
+            return Integer.compare(nivel1, nivel2); // Orden ascendente (1 primero)
+        };
+
+        ColaPrioridad<Desastre> cola = new ColaPrioridad<>(comparadorPrioridad);
+        cola.encolarTodos(desastres);
+
+        List<DesastreResponseDto> resultado = new ArrayList<>();
+        while (!cola.estaVacia()) {
+            resultado.add(convertirADto(cola.atenderSiguiente()));
+        }
+
+        return resultado;
+    }
+
+    /**
+     * Obtiene el desastre más urgente (mayor prioridad) sin eliminarlo.
+     */
+    public DesastreResponseDto obtenerDesastreMasUrgente() throws IOException {
+        List<Desastre> desastres = desastreRepository.findAll();
+        if (desastres.isEmpty()) return null;
+
+        Comparator<Desastre> comparadorPrioridad = (d1, d2) -> {
+            int nivel1 = d1.asignarNivelPrioridad();
+            int nivel2 = d2.asignarNivelPrioridad();
+            return Integer.compare(nivel1, nivel2);
+        };
+
+        ColaPrioridad<Desastre> cola = new ColaPrioridad<>(comparadorPrioridad);
+        cola.encolarTodos(desastres);
+
+        Desastre masUrgente = cola.verSiguiente();
+        return masUrgente != null ? convertirADto(masUrgente) : null;
+    }
+
+    /**
+     * Obtiene los N desastres más urgentes.
+     */
+    public List<DesastreResponseDto> obtenerTopDesastresUrgentes(int cantidad) throws IOException {
+        List<Desastre> desastres = desastreRepository.findAll();
+
+        Comparador<Desastre> comparadorPrioridad = (d1, d2) -> {
+            int nivel1 = d1.asignarNivelPrioridad();
+            int nivel2 = d2.asignarNivelPrioridad();
+            return Integer.compare(nivel1, nivel2);
+        };
+
+        ColaPrioridad<Desastre> cola = new ColaPrioridad<>(comparadorPrioridad);
+        cola.encolarTodos(desastres);
+
+        List<DesastreResponseDto> resultado = new ArrayList<>();
+        int count = 0;
+        while (!cola.estaVacia() && count < cantidad) {
+            resultado.add(convertirADto(cola.atenderSiguiente()));
+            count++;
+        }
+
+        return resultado;
+    }
+
+    /**
+     * Obtiene desastres agrupados por nivel de prioridad.
+     * @param nivelPrioridad "Alta", "Media" o "Baja"
+     */
+    public List<DesastreResponseDto> obtenerDesastresPorNivelPrioridad(String nivelPrioridad) throws IOException {
+        List<Desastre> desastres = desastreRepository.findAll();
+
+        return desastres.stream()
+                .filter(d -> d.asignarPrioridad().equalsIgnoreCase(nivelPrioridad))
+                .map(this::convertirADto)
                 .collect(Collectors.toList());
     }
 
