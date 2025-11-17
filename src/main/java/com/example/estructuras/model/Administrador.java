@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Administrador extends Usuario {
-   /* private GrafoNoDirigido grafoRutas;
+   private GrafoNoDirigido grafoRutas;
 
     public Administrador(String nombre, String id, String email, String contrasena) {
         super(nombre, id, email, contrasena);
@@ -238,5 +238,5 @@ public class Administrador extends Usuario {
             System.err.println("Error al guardar el reporte: " + e.getMessage());
         }
 
-    }*/
+    }
 }

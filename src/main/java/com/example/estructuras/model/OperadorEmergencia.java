@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class OperadorEmergencia extends Usuario {
 
-    /*public OperadorEmergencia(String nombre, String id, String email, String contrasena) {
+    public OperadorEmergencia(String nombre, String id, String email, String contrasena) {
         super(nombre, id, email, contrasena);
     }
 
@@ -92,5 +92,5 @@ public class OperadorEmergencia extends Usuario {
             case "Baja" -> 1;
             default -> 0;
         };
-    }*/
+    }
     }

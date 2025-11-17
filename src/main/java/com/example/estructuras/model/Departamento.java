@@ -15,7 +15,6 @@ public class Departamento {
 
     public Departamento() {
     }
-
     public String getNombre() {
         return nombre;
     }
