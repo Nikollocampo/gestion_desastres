@@ -3,6 +3,7 @@ package com.example.estructuras.controller;
 import com.example.estructuras.Mapping.dto.ObtenerRecursoPorIdRequestDto;
 import com.example.estructuras.Mapping.dto.RecursoRequestDto;
 import com.example.estructuras.Mapping.dto.RecursoResponseDto;
+import com.example.estructuras.Mapping.dto.CantidadRequestDto;
 import com.example.estructuras.service.RecursoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/recurso")
 public class RecursoController {
 
     private final RecursoService recursoService;
+    private static final Logger logger = LoggerFactory.getLogger(RecursoController.class);
 
     public RecursoController(RecursoService recursoService) {
         this.recursoService = recursoService;
@@ -44,26 +48,42 @@ public class RecursoController {
         }
     }
 
-    @PutMapping("/id/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<RecursoRequestDto> actualizar(@PathVariable String id, @RequestBody RecursoRequestDto dto) throws IOException {
-        dto.setId(id); // Asegura que el ID del path se use en la actualización
-        return ResponseEntity.ok(recursoService.actualizar(dto));
+        logger.info("Llamada a /api/recurso/actualizar/{}", id);
+        if (id == null || id.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        dto.setId(id); // Asegura que el id de la ruta se use
+        try {
+            return ResponseEntity.ok(recursoService.actualizar(dto));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable String id) throws IOException {
         recursoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/agregar/{id}")
-    public ResponseEntity<RecursoRequestDto> agregarCantidad(@PathVariable String id, @RequestParam int cantidad) throws IOException {
-        return ResponseEntity.ok(recursoService.agregarCantidad(id, cantidad));
+
+    @PutMapping("/agregar/{id}")
+    public ResponseEntity<RecursoRequestDto> agregarCantidad(@PathVariable String id, @RequestBody CantidadRequestDto cantidadDto) throws IOException {
+        if (cantidadDto == null || cantidadDto.getCantidad() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(recursoService.agregarCantidad(id, cantidadDto.getCantidad()));
     }
 
-    @PatchMapping("/consumir/{id}")
-    public ResponseEntity<String> consumir(@PathVariable String id, @RequestParam int cantidad) throws IOException {
-        boolean resultado = recursoService.consumir(id, cantidad);
+
+    @PutMapping("/consumir/{id}")
+    public ResponseEntity<String> consumir(@PathVariable String id, @RequestBody CantidadRequestDto cantidadDto) throws IOException {
+        if (cantidadDto == null || cantidadDto.getCantidad() == null) {
+            return ResponseEntity.badRequest().body("Cantidad no especificada");
+        }
+        boolean resultado = recursoService.consumir(id, cantidadDto.getCantidad());
         if (resultado) {
             return ResponseEntity.ok("Consumo realizado correctamente");
         } else {
