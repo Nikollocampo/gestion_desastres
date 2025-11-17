@@ -1,6 +1,7 @@
 package com.example.estructuras.Mapping.dto;
 
 import com.example.estructuras.model.TipoDesastre;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +12,7 @@ public class DesastreRequestDto {
     private String idDesastre;
     private TipoDesastre tipoDesastre;
     private int personasAfectadas;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha;
     private String idUbicacion;
     private List<String> equiposIds;

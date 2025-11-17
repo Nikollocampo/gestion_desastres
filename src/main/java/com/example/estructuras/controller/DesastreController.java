@@ -1,35 +1,47 @@
 package com.example.estructuras.controller;
 
+import com.example.estructuras.Mapping.dto.DesastreRequestDto;
 import com.example.estructuras.Mapping.dto.DesastreResponseDto;
 import com.example.estructuras.Mapping.dto.EquipoResponseDto;
 import com.example.estructuras.model.Desastre;
+import com.example.estructuras.model.Equipo;
+import com.example.estructuras.model.Ubicacion;
+import com.example.estructuras.repository.EquipoJsonRepository;
+import com.example.estructuras.repository.UbicacionJsonRepository;
 import com.example.estructuras.service.DesastreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/desastres")
 public class DesastreController {
     private final DesastreService desastreService;
+    private final EquipoJsonRepository equipoRepository;
+    private final UbicacionJsonRepository ubicacionRepository;
 
-    public DesastreController(DesastreService desastreService) {
+    public DesastreController(DesastreService desastreService, EquipoJsonRepository equipoRepository, UbicacionJsonRepository ubicacionRepository) {
         this.desastreService = desastreService;
+        this.equipoRepository = equipoRepository;
+        this.ubicacionRepository = ubicacionRepository;
     }
 
     // Obtener todos los desastres
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<DesastreResponseDto>> obtenerTodos() throws IOException {
         List<DesastreResponseDto> response = desastreService.obtenerTodos();
         return ResponseEntity.ok(response);
     }
 
-    // Obtener un desastre por ID
-    @GetMapping("/id")
-    public ResponseEntity<DesastreResponseDto> obtenerPorId(@PathVariable String id) throws IOException {
+    // Obtener un desastre por ID usando POST y body
+    @PostMapping("/id")
+    public ResponseEntity<DesastreResponseDto> obtenerPorId(@RequestBody Map<String, String> body) throws IOException {
+        String id = body.get("id");
         DesastreResponseDto response = desastreService.obtenerPorId(id);
         if (response == null) {
             return ResponseEntity.notFound().build();
@@ -38,9 +50,32 @@ public class DesastreController {
     }
 
     // Registrar un nuevo desastre
-    @PostMapping
-    public ResponseEntity<Void> registrar(@RequestBody Desastre dto) throws IOException {
-        desastreService.agregarDesastre(dto);
+    @PostMapping("/registrar")
+    public ResponseEntity<Void> registrar(@RequestBody DesastreRequestDto dto) throws IOException {
+        // Buscar ubicación
+        Ubicacion ubicacion = ubicacionRepository.findById(dto.getIdUbicacion()).orElse(null);
+        if (ubicacion == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        // Buscar equipos
+        List<Equipo> equipos = new ArrayList<>();
+        if (dto.getEquiposIds() != null) {
+            for (String idEquipo : dto.getEquiposIds()) {
+                equipoRepository.findById(idEquipo).ifPresent(equipos::add);
+            }
+        }
+        // Crear el desastre
+        Desastre desastre = new Desastre(
+            dto.getMagnitud(),
+            dto.getNombre(),
+            dto.getIdDesastre(),
+            dto.getTipoDesastre(),
+            dto.getPersonasAfectadas(),
+            dto.getFecha(),
+            ubicacion
+        );
+        desastre.setEquiposAsignados(equipos);
+        desastreService.agregarDesastre(desastre);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -1,0 +1,27 @@
+[ {
+  "magnitud" : 5,
+  "nombre" : "Inundación",
+  "idDesastre" : "D1",
+  "tipoDesastre" : "INUNDACION",
+  "personasAfectadas" : 100,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : [ {
+    "idEquipo" : "E1",
+    "integrantesDisponibles" : 5,
+    "tipoEquipo" : "MEDICOS",
+    "ubicacion" : {
+      "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+      "nombre" : "Centro Salud",
+      "calle" : "10",
+      "carrera" : "15",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
+  } ]
+} ]

@@ -3,7 +3,7 @@ package com.example.estructuras.repository;
 import com.example.estructuras.model.Desastre;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.jfr.Registered;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -15,15 +15,23 @@ import java.util.Optional;
 
 @Repository
 public class DesastreJsonRepository {
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     private final File file = Paths.get("src/main/resources/json/desastres.json").toFile();
 
     public synchronized List<Desastre> findAll() throws IOException {
         if (!file.exists()) {
             return new ArrayList<>();
         }
-        List<Desastre> list = mapper.readValue(file, new TypeReference<List<Desastre>>() {});
-        return list == null ? new ArrayList<>() : list;
+        try {
+            if (file.length() == 0) {
+                return new ArrayList<>();
+            }
+            List<Desastre> list = mapper.readValue(file, new TypeReference<List<Desastre>>() {});
+            return list == null ? new ArrayList<>() : list;
+        } catch (Exception e) {
+            // Si el archivo está vacío o tiene contenido inválido, retorna lista vacía
+            return new ArrayList<>();
+        }
     }
 
     public synchronized Optional<Desastre> findById(String idDesastre) throws IOException {
