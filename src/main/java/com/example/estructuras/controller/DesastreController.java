@@ -63,4 +63,48 @@ public class DesastreController {
         }
         return ResponseEntity.ok(desastre.getEquiposAsignados());
     }
+
+    // ==================== ENDPOINTS CON COLA DE PRIORIDAD ====================
+
+    /**
+     * Obtiene todos los desastres ordenados por prioridad (de mayor a menor).
+     * Usa ColaPrioridad internamente.
+     */
+    @GetMapping("/por-prioridad")
+    public ResponseEntity<List<DesastreResponseDto>> obtenerDesastresPorPrioridad() throws IOException {
+        List<DesastreResponseDto> desastres = desastreService.obtenerDesastresPorPrioridad();
+        return ResponseEntity.ok(desastres);
+    }
+
+    /**
+     * Obtiene el desastre más urgente (mayor prioridad).
+     */
+    @GetMapping("/mas-urgente")
+    public ResponseEntity<DesastreResponseDto> obtenerDesastreMasUrgente() throws IOException {
+        DesastreResponseDto desastre = desastreService.obtenerDesastreMasUrgente();
+        if (desastre == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(desastre);
+    }
+
+    /**
+     * Obtiene los N desastres más urgentes.
+     * @param cantidad Número de desastres a retornar
+     */
+    @GetMapping("/top-urgentes/{cantidad}")
+    public ResponseEntity<List<DesastreResponseDto>> obtenerTopDesastresUrgentes(@PathVariable int cantidad) throws IOException {
+        List<DesastreResponseDto> desastres = desastreService.obtenerTopDesastresUrgentes(cantidad);
+        return ResponseEntity.ok(desastres);
+    }
+
+    /**
+     * Obtiene desastres filtrados por nivel de prioridad.
+     * @param nivel Nivel de prioridad: "CRITICO", "ALTO", "MEDIO", "BAJO"
+     */
+    @GetMapping("/nivel-prioridad/{nivel}")
+    public ResponseEntity<List<DesastreResponseDto>> obtenerDesastresPorNivelPrioridad(@PathVariable String nivel) throws IOException {
+        List<DesastreResponseDto> desastres = desastreService.obtenerDesastresPorNivelPrioridad(nivel);
+        return ResponseEntity.ok(desastres);
+    }
 }
