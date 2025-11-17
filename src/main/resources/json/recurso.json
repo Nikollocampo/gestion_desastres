@@ -2,12 +2,84 @@
   "id" : "4",
   "nombre" : "Paracetamol",
   "tipo" : "MEDICAMENTO",
-  "cantidad" : 10,
+  "cantidad" : 0,
   "ubicacion" : {
     "id" : "U1",
     "nombre" : "Centro Salud",
     "calle" : "10",
     "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "5",
+  "nombre" : "Arroz",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "6",
+  "nombre" : "Agua",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "7",
+  "nombre" : "Ibuprofeno",
+  "tipo" : "MEDICAMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "8",
+  "nombre" : "Frijoles",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "9",
+  "nombre" : "Alcohol",
+  "tipo" : "MEDICAMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "id" : "efae4712-35f1-4783-88b2-ba15b71c1a89",
+  "nombre" : "agua",
+  "tipo" : "MEDICAMENTO",
+  "cantidad" : 1,
+  "ubicacion" : {
+    "id" : "U1",
+    "nombre" : "Ubicacion recurso",
+    "calle" : "5",
+    "carrera" : "10",
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
 } ]

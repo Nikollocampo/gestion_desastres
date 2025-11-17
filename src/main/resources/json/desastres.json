@@ -35,4 +35,144 @@
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
   } ]
+}, {
+  "magnitud" : 6,
+  "nombre" : "Derrumbe en colina",
+  "idDesastre" : "D2",
+  "tipoDesastre" : "DERRUMBE",
+  "personasAfectadas" : 50,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : [ ]
+}, {
+  "magnitud" : 7,
+  "nombre" : "Incendio en mercado",
+  "idDesastre" : "D3",
+  "tipoDesastre" : "INCENDIO",
+  "personasAfectadas" : 80,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : [
+    {
+      "idEquipo" : "E1",
+      "integrantesDisponibles" : 5,
+      "tipoEquipo" : "MEDICOS",
+      "ubicacion" : {
+        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+        "nombre" : "Centro Salud",
+        "calle" : "10",
+        "carrera" : "15",
+        "tipoUbicacion" : "CENTRO_AYUDA"
+      }
+    },
+    {
+      "idEquipo" : "E2",
+      "integrantesDisponibles" : 8,
+      "tipoEquipo" : "MEDICOS",
+      "ubicacion" : {
+        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+        "nombre" : "Centro Salud",
+        "calle" : "10",
+        "carrera" : "15",
+        "tipoUbicacion" : "CENTRO_AYUDA"
+      }
+    },
+    {
+      "idEquipo" : "E3",
+      "integrantesDisponibles" : 6,
+      "tipoEquipo" : "MEDICOS",
+      "ubicacion" : {
+        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+        "nombre" : "Centro Salud",
+        "calle" : "10",
+        "carrera" : "15",
+        "tipoUbicacion" : "CENTRO_AYUDA"
+      }
+    }
+  ]
+}, {
+  "magnitud" : 4,
+  "nombre" : "Temblor leve",
+  "idDesastre" : "D4",
+  "tipoDesastre" : "TEMBLOR",
+  "personasAfectadas" : 20,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : [ ]
+}, {
+  "magnitud" : 8,
+  "nombre" : "Inundación urbana",
+  "idDesastre" : "D5",
+  "tipoDesastre" : "INUNDACION",
+  "personasAfectadas" : 200,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : [ ]
+}, {
+  "magnitud" : 9,
+  "nombre" : "Incendio forestal",
+  "idDesastre" : "D6",
+  "tipoDesastre" : "INCENDIO",
+  "personasAfectadas" : 300,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : [
+    {
+      "idEquipo" : "E1",
+      "integrantesDisponibles" : 10,
+      "tipoEquipo" : "MEDICOS",
+      "ubicacion" : {
+        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+        "nombre" : "Centro Salud",
+        "calle" : "10",
+        "carrera" : "15",
+        "tipoUbicacion" : "CENTRO_AYUDA"
+      }
+    }
+  ]
+}, {
+  "magnitud" : 5,
+  "nombre" : "Derrumbe en túnel",
+  "idDesastre" : "D7",
+  "tipoDesastre" : "DERRUMBE",
+  "personasAfectadas" : 60,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  },
+  "equiposAsignados" : []
 } ]
