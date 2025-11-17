@@ -5,6 +5,7 @@
   "carrera" : "15",
   "tipoUbicacion" : "CENTRO_AYUDA"
 }, {
+<<<<<<< Updated upstream
   "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
   "nombre" : "Bienestar Sur",
   "calle" : "30",
@@ -27,5 +28,17 @@
   "nombre" : "Clinica sur",
   "calle" : "5",
   "carrera" : "20",
+=======
+  "id" : "093a12e2-35df-4178-af4b-b976470c30c1",
+  "nombre" : "Paracetamol",
+  "calle" : null,
+  "carrera" : null,
+  "tipoUbicacion" : null
+}, {
+  "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+  "nombre" : "Colegio San Luis",
+  "calle" : "calle 4",
+  "carrera" : "carrera 10",
+>>>>>>> Stashed changes
   "tipoUbicacion" : "REFUGIO"
 } ]
