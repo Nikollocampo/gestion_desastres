@@ -234,7 +234,7 @@ public class AdministradorService {
                     writer.write("---------------------------------------------------------------\n");
                 }
             }
-            writer.write("\nGenerado por el sistema de gestión de emergencias.\n");
+            writer.write("\nGenerado por el sistema de gestión de desastres.\n");
             writer.write("Fecha de generación: " + java.time.LocalDate.now() + "\n");
         }
         OperacionSimpleResponseDto res = new OperacionSimpleResponseDto();
