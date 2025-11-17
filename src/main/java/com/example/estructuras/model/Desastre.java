@@ -48,12 +48,6 @@ public class Desastre implements Comparable<Desastre>{
             default: return 3;
         }
     }
-    public String toLineaArchivo() {
-        String nombreUbicacion = (ubicacion != null) ? ubicacion.getNombre() : "SIN_UBICACION";
-        return String.format("ID: %s | Nombre: %s | Tipo: %s | Magnitud: %d | Personas: %d | Fecha: %s | Ubicacion: %s",
-                idDesastre, nombre, tipoDesastre, magnitud, personasAfectadas,
-                (fecha != null ? fecha : LocalDate.now()), nombreUbicacion);
-    }
 
     //metodo para comparar el desastre por prioridad
     @Override
@@ -63,79 +57,51 @@ public class Desastre implements Comparable<Desastre>{
 
     }
 
-    //metodo para mostrar los equipos asignados
-    public void mostrarEquiposAsignados() {
-        System.out.println("Equipos asignados al desastre " + nombre);
-        if (equiposAsignados.isEmpty()) {
-            System.out.println("Ningún equipo asignado.");
-        } else {
-            for (Equipo equipo : equiposAsignados) {
-                System.out.println(" - " + equipo);
-            }
-        }
-    }
-
-
     public int getMagnitud() {
         return magnitud;
     }
-
     public void setMagnitud(int magnitud) {
         this.magnitud = magnitud;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getIdDesastre() {
         return idDesastre;
     }
-
     public void setIdDesastre(String idDesastre) {
         this.idDesastre = idDesastre;
     }
-
     public TipoDesastre getTipoDesastre() {
         return tipoDesastre;
     }
-
     public void setTipoDesastre(TipoDesastre tipoDesastre) {
         this.tipoDesastre = tipoDesastre;
     }
-
     public int getPersonasAfectadas() {
         return personasAfectadas;
     }
-
     public void setPersonasAfectadas(int personasAfectadas) {
         this.personasAfectadas = personasAfectadas;
     }
-
     public LocalDate getFecha() {
         return fecha;
     }
-
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
-
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
-
     public List<Equipo> getEquiposAsignados() {
         return equiposAsignados;
     }
-
     public void setEquiposAsignados(List<Equipo> equiposAsignados) {
         this.equiposAsignados = equiposAsignados;
     }
