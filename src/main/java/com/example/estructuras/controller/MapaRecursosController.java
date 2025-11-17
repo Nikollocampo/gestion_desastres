@@ -63,7 +63,7 @@ public class MapaRecursosController {
         return ResponseEntity.ok(convertirARecursoDto(recurso));
     }
 
-    @PostMapping("/ubicacion/ubicacionId/recurso")
+    @PostMapping("/ubicacion/{ubicacionId}/recurso")
     public ResponseEntity<String> agregarRecurso(
             @PathVariable String ubicacionId,
             @RequestBody RecursoRequestDto recursoDto) {

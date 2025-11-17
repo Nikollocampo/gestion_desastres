@@ -32,7 +32,7 @@ public class NodoDistribucionController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public ResponseEntity<NodoDistribucionResponseDto> crear(@RequestBody NodoDistribucionRequestDto request) {
         NodoDistribucionResponseDto dto = service.create(request);
         if (dto == null) return ResponseEntity.badRequest().build();
