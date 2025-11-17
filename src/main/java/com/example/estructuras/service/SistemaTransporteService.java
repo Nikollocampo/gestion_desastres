@@ -64,14 +64,17 @@ public class SistemaTransporteService {
         return ruta.stream().map(Ubicacion::getNombre).collect(Collectors.toList());
     }
 
-    // Calcular todas las distancias desde una ubicación origen
+    // Calcula las distancias desde una ubicación a todas las demás
     public java.util.Map<String, Float> calcularDistanciasDesde(String origenId) throws IOException {
         Ubicacion origen = ubicacionRepo.findById(origenId).orElse(null);
-        if (origen == null) return java.util.Map.of();
         GrafoNoDirigido grafo = grafoRepo.cargarGrafo();
-        java.util.Map<Ubicacion, Float> distancias = grafo.calcularTodasDistancias(origen);
-        return distancias.entrySet().stream()
-            .collect(Collectors.toMap(e -> e.getKey().getNombre(), e -> e.getValue()));
+        java.util.Map<String, Float> resultado = new java.util.HashMap<>();
+        if (origen == null) return resultado;
+        java.util.Map<Ubicacion, Float> distancias = Dijkstra.calcularDistancias(grafo, origen);
+        for (java.util.Map.Entry<Ubicacion, Float> entry : distancias.entrySet()) {
+            resultado.put(entry.getKey().getId(), entry.getValue());
+        }
+        return resultado;
     }
 
 }

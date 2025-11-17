@@ -30,7 +30,7 @@ public class SistemaTransporteController {
         return ResponseEntity.ok(ruta);
     }
 
-    @GetMapping("/distancias/origenId")
+    @GetMapping("/distancias/{origenId}")
     public ResponseEntity<java.util.Map<String, Float>> calcularDistanciasDesde(@PathVariable String origenId) throws IOException {
         java.util.Map<String, Float> distancias = transporteService.calcularDistanciasDesde(origenId);
         return ResponseEntity.ok(distancias);

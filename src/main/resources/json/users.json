@@ -46,4 +46,10 @@
   "email" : "j@",
   "contrasena" : "123",
   "rol" : "ADMINISTRADOR"
+}, {
+  "id" : "6381e958-59af-450f-8381-6de1eb3651ee",
+  "nombre" : "isa",
+  "email" : "isa@",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
 } ]

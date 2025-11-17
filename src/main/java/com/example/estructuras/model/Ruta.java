@@ -27,7 +27,23 @@ public class Ruta {
     public float getDistancia() {
         return distancia;
     }
-    public void setDistancia(int distancia) {
+    public void setDistancia(float distancia) {
         this.distancia = distancia;
+    }
+
+    // Metodo para calcular un "peso" basado en la distancia en tramos de 5 km (igual lógica que RutaService)
+    public int calcularPeso() {
+        if (distancia <= 0) return 0;
+        int peso = 0;
+        int comparador = 5;
+        for (int i = 1; i <= 10; i++) {
+            if (distancia >= comparador) {
+                peso = i;
+                comparador += 5;
+            } else {
+                break;
+            }
+        }
+        return peso;
     }
 }
