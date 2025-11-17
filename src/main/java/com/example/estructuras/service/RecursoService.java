@@ -86,7 +86,7 @@ public class RecursoService {
         return false;
     }
 
-    private Recurso toEntity(RecursoRequestDto dto) {
+    public Recurso toEntity(RecursoRequestDto dto) {
         Recurso r = new Recurso(
                 dto.getId(),
                 dto.getNombre(),
@@ -109,7 +109,7 @@ public class RecursoService {
         return r;
     }
 
-    private RecursoRequestDto toDto(Recurso r) {
+    public RecursoRequestDto toDto(Recurso r) {
         RecursoRequestDto dto = new RecursoRequestDto();
 
         dto.setId(r.getId());

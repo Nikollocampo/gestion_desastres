@@ -42,7 +42,7 @@ public class RutaService {
         return lista;
     }
 
-    private Ubicacion obtenerUbicacion(String id) throws IOException {
+    public Ubicacion obtenerUbicacion(String id) throws IOException {
         Optional<Ubicacion> ubicacion = ubicacionRepository.findById(id);
         if (ubicacion.isEmpty()) {
             throw new IllegalArgumentException("Ubicación no encontrada con ID: " + id);
@@ -50,7 +50,7 @@ public class RutaService {
         return ubicacion.get();
     }
 
-    private RutaResponseDto toResponseDto(Ruta ruta) {
+    public RutaResponseDto toResponseDto(Ruta ruta) {
         return new RutaResponseDto(
                 toUbicacionDto(ruta.getOrigen()),
                 toUbicacionDto(ruta.getDestino()),
@@ -59,7 +59,7 @@ public class RutaService {
         );
     }
 
-    private UbicacionResponseDto toUbicacionDto(Ubicacion u) {
+    public UbicacionResponseDto toUbicacionDto(Ubicacion u) {
         return new UbicacionResponseDto(
                 u.getId(),
                 u.getNombre(),
@@ -69,7 +69,7 @@ public class RutaService {
         );
     }
 
-    private int calcularPeso(float distancia) {
+    public int calcularPeso(float distancia) {
         int peso = 0;
         int comparador = 5;
         if (distancia <= 0) return peso;
