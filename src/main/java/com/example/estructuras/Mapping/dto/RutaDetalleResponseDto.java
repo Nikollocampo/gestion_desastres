@@ -17,8 +17,8 @@ public class RutaDetalleResponseDto {
         RutaDetalleResponseDto dto = new RutaDetalleResponseDto();
         dto.exito = true;
         dto.mensaje = mensaje;
-        dto.origen = new UbicacionResponseDto(origen.getId(), origen.getNombre(), origen.getCalle(), origen.getCarrera(), origen.getTipoUbicacion());
-        dto.destino = new UbicacionResponseDto(destino.getId(), destino.getNombre(), destino.getCalle(), destino.getCarrera(), destino.getTipoUbicacion());
+        dto.origen = new UbicacionResponseDto(origen.getId(), origen.getNombre(), origen.getCalle(), origen.getCarrera(), origen.getTipoUbicacion(), origen.getLat(), origen.getLng());
+        dto.destino = new UbicacionResponseDto(destino.getId(), destino.getNombre(), destino.getCalle(), destino.getCarrera(), destino.getTipoUbicacion(), destino.getLat(), destino.getLng());
         dto.distancia = distancia;
         dto.peso = peso;
         dto.camino = camino;

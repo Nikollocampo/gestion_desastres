@@ -65,7 +65,9 @@ public class EquipoService {
                 u.getNombre(),
                 u.getCalle(),
                 u.getCarrera(),
-                u.getTipoUbicacion()
+                u.getTipoUbicacion(),
+                u.getLat(),
+                u.getLng()
         );
     }
 

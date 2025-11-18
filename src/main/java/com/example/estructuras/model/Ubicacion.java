@@ -3,13 +3,20 @@ package com.example.estructuras.model;
 import java.util.Objects;
 
 public class Ubicacion {
+
     private String id;
     private String nombre;
     private String calle;
     private String carrera;
     private TipoUbicacion tipoUbicacion;
 
-    public Ubicacion(String id, String nombre, String calle, String carrera, TipoUbicacion tipoUbicacion) {
+    private Double lat;   // ← NUEVO
+    private Double lng;   // ← NUEVO
+
+    public Ubicacion() {}
+
+    public Ubicacion(String id, String nombre, String calle, String carrera,
+                     TipoUbicacion tipoUbicacion) {
         this.id = id;
         this.nombre = nombre;
         this.calle = calle;
@@ -17,25 +24,22 @@ public class Ubicacion {
         this.tipoUbicacion = tipoUbicacion;
     }
 
-    public  Ubicacion() {}
+    public Ubicacion(String id, String nombre, String calle, String carrera,
+                     TipoUbicacion tipoUbicacion, Double lat, Double lng) {
+        this.id = id;
+        this.nombre = nombre;
+        this.calle = calle;
+        this.carrera = carrera;
+        this.tipoUbicacion = tipoUbicacion;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    // Getters y Setters
 
     public String getId() {
         return id;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Ubicacion other = (Ubicacion) obj;
-        return Objects.equals(id, other.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
 
     public void setId(String id) {
         this.id = id;
@@ -65,6 +69,40 @@ public class Ubicacion {
         this.carrera = carrera;
     }
 
-    public TipoUbicacion getTipoUbicacion() {return  tipoUbicacion;}
+    public TipoUbicacion getTipoUbicacion() {
+        return tipoUbicacion;
+    }
 
+    public void setTipoUbicacion(TipoUbicacion tipoUbicacion) {
+        this.tipoUbicacion = tipoUbicacion;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Ubicacion other = (Ubicacion) obj;
+        return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public class UbicacionJsonRepository {
     private final ObjectMapper mapper = new ObjectMapper();
-    private final File file = Paths.get("src/main/resources/json/ubicaciones.json").toFile();
+    private final File file = Paths.get("src/main/resources/json/ubicaciones_geocoded.json").toFile();
 
     public synchronized List<Ubicacion> findAll() throws IOException {
         if (!file.exists()) {
@@ -58,5 +58,12 @@ public class UbicacionJsonRepository {
     public synchronized void saveAll(List<Ubicacion> ubicaciones) throws IOException {
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, ubicaciones);
     }
+
+    public List<Ubicacion> findAllGeocoded() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String path = "src/main/resources/json/ubicaciones_geocoded.json";
+        return mapper.readValue(new File(path), new TypeReference<>() {});
+    }
+
 
 }

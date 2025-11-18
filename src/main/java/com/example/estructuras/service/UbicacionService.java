@@ -28,7 +28,7 @@ public class UbicacionService {
     }
 
     public List<UbicacionResponseDto> listar() throws IOException {
-        return repository.findAll().stream()
+        return repository.findAllGeocoded().stream()   // ← ESTE método devuelve las coordenadas
                 .map(this::toResponseDto)
                 .collect(Collectors.toList());
     }
@@ -57,7 +57,9 @@ public class UbicacionService {
                 ubicacion.getNombre(),
                 ubicacion.getCalle(),
                 ubicacion.getCarrera(),
-                ubicacion.getTipoUbicacion()
+                ubicacion.getTipoUbicacion(),
+                ubicacion.getLat(),   // ← NUEVO
+                ubicacion.getLng()    // ← NUEVO
         );
     }
 

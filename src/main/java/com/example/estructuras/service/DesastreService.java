@@ -57,7 +57,9 @@ public class DesastreService {
                 ubicacion.getNombre(),
                 ubicacion.getCalle(),
                 ubicacion.getCarrera(),
-                ubicacion.getTipoUbicacion()
+                ubicacion.getTipoUbicacion(),
+                ubicacion.getLat(),
+                ubicacion.getLng()
         );
 
         List<EquipoResponseDto> equiposDto = desastre.getEquiposAsignados().stream()
@@ -70,7 +72,9 @@ public class DesastreService {
                                 e.getUbicacion().getNombre(),
                                 e.getUbicacion().getCalle(),
                                 e.getUbicacion().getCarrera(),
-                                e.getUbicacion().getTipoUbicacion()
+                                e.getUbicacion().getTipoUbicacion(),
+                                e.getUbicacion().getLat(),
+                                e.getUbicacion().getLng()
                         )
                 ))
                 .collect(Collectors.toList());
@@ -102,7 +106,9 @@ public class DesastreService {
                                 e.getUbicacion().getNombre(),
                                 e.getUbicacion().getCalle(),
                                 e.getUbicacion().getCarrera(),
-                                e.getUbicacion().getTipoUbicacion()
+                                e.getUbicacion().getTipoUbicacion(),
+                                e.getUbicacion().getLat(),
+                                e.getUbicacion().getLng()
                         )
                 ))
                 .collect(Collectors.toList());

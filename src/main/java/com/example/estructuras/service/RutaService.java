@@ -65,7 +65,9 @@ public class RutaService {
                 u.getNombre(),
                 u.getCalle(),
                 u.getCarrera(),
-                u.getTipoUbicacion()
+                u.getTipoUbicacion(),
+                u.getLat(),   // ← NUEVO
+                u.getLng()    // ← NUEVO
         );
     }
 

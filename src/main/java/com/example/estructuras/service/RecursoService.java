@@ -161,7 +161,9 @@ public class RecursoService {
                     r.getUbicacion().getNombre(),
                     r.getUbicacion().getCalle(),
                     r.getUbicacion().getCarrera(),
-                    r.getUbicacion().getTipoUbicacion()
+                    r.getUbicacion().getTipoUbicacion(),
+                    r.getUbicacion().getLat(),
+                    r.getUbicacion().getLng()
             );
             dto.setUbicacion(u);
         }
@@ -181,7 +183,9 @@ public class RecursoService {
                     r.getUbicacion().getNombre(),
                     r.getUbicacion().getCalle(),
                     r.getUbicacion().getCarrera(),
-                    r.getUbicacion().getTipoUbicacion()
+                    r.getUbicacion().getTipoUbicacion(),
+                    r.getUbicacion().getLat(),
+                    r.getUbicacion().getLng()
             );
             dto.setUbicacion(u);
         }

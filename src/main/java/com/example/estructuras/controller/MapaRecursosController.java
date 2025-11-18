@@ -171,11 +171,13 @@ public class MapaRecursosController {
 
     private UbicacionResponseDto convertirAUbicacionDto(Ubicacion ubicacion) {
         return new UbicacionResponseDto(
-            ubicacion.getId(),
-            ubicacion.getNombre(),
-            ubicacion.getCalle(),
-            ubicacion.getCarrera(),
-            ubicacion.getTipoUbicacion()
+                ubicacion.getId(),
+                ubicacion.getNombre(),
+                ubicacion.getCalle(),
+                ubicacion.getCarrera(),
+                ubicacion.getTipoUbicacion(),
+                ubicacion.getLat(),
+                ubicacion.getLng()
         );
     }
 }

@@ -53,7 +53,9 @@ public class GrafoNoDirigidoService {
                 ubicacion.getNombre(),
                 ubicacion.getCalle(),
                 ubicacion.getCarrera(),
-                ubicacion.getTipoUbicacion()
+                ubicacion.getTipoUbicacion(),
+                ubicacion.getLat(),   // ← NUEVO
+                ubicacion.getLng()    // ← NUEVO
         );
     }
 
