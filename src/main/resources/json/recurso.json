@@ -1,1 +1,94 @@
-[]
+[
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa001",
+    "nombre": "Agua embotellada",
+    "tipo": "ALIMENTO",
+    "cantidad": 1000,
+    "ubicacion": {
+      "id": "7b958f06-cd4c-4316-81b9-254c92216a07",
+      "nombre": "Centro Salud",
+      "calle": "Calle 10",
+      "carrera": "Carrera 15",
+      "tipoUbicacion": "CENTRO_AYUDA"
+    }
+  },
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa002",
+    "nombre": "Alimentos no perecederos",
+    "tipo": "ALIMENTO",
+    "cantidad": 800,
+    "ubicacion": {
+      "id": "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+      "nombre": "Bienestar Sur",
+      "calle": "Calle 30",
+      "carrera": "Carrera 12",
+      "tipoUbicacion": "CENTRO_AYUDA"
+    }
+  },
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa003",
+    "nombre": "Suero oral",
+    "tipo": "MEDICAMENTO",
+    "cantidad": 300,
+    "ubicacion": {
+      "id": "bc2032a7-017d-457e-8ca6-ab57a2193d35",
+      "nombre": "Clinica Sur",
+      "calle": "Calle 5",
+      "carrera": "Carrera 20",
+      "tipoUbicacion": "CENTRO_AYUDA"
+    }
+  },
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa004",
+    "nombre": "Analgésicos",
+    "tipo": "MEDICAMENTO",
+    "cantidad": 500,
+    "ubicacion": {
+      "id": "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
+      "nombre": "Salud Integral",
+      "calle": "Calle 18",
+      "carrera": "Carrera 3",
+      "tipoUbicacion": "CENTRO_AYUDA"
+    }
+  },
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa005",
+    "nombre": "Antibióticos",
+    "tipo": "MEDICAMENTO",
+    "cantidad": 250,
+    "ubicacion": {
+      "id": "0b751e16-3bed-4230-86e2-bd75182ab37e",
+      "nombre": "Centro Esperanza",
+      "calle": "Calle 5",
+      "carrera": "Carrera 20",
+      "tipoUbicacion": "CENTRO_AYUDA"
+    }
+  },
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa006",
+    "nombre": "Fórmula infantil",
+    "tipo": "ALIMENTO",
+    "cantidad": 200,
+    "ubicacion": {
+      "id": "39254f3e-4893-408b-8505-df24c74e844d",
+      "nombre": "Colegio San Luis",
+      "calle": "Calle 4",
+      "carrera": "Carrera 10",
+      "tipoUbicacion": "REFUGIO"
+    }
+  },
+  {
+    "id": "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa007",
+    "nombre": "Barras energéticas",
+    "tipo": "ALIMENTO",
+    "cantidad": 600,
+    "ubicacion": {
+      "id": "ca54312d-d335-4cec-9605-a1799ec1aa9d",
+      "nombre": "laureles",
+      "calle": "Calle 73",
+      "carrera": "Carrera 42",
+      "tipoUbicacion": "CENTRO_AYUDA"
+    }
+  }
+]
+
