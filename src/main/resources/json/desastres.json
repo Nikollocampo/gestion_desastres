@@ -1,9 +1,9 @@
 [ {
   "magnitud" : 2,
   "nombre" : "incendio",
-  "idDesastre" : null,
+  "idDesastre" : "6",
   "tipoDesastre" : "INCENDIO",
-  "personasAfectadas" : 4,
+  "personasAfectadas" : 5,
   "fecha" : [ 2025, 11, 11 ],
   "ubicacion" : {
     "id" : "f624219f-1441-4fb9-8d6e-17aaafa7d6c8",
@@ -18,7 +18,7 @@
 }, {
   "magnitud" : 4,
   "nombre" : "Temblor",
-  "idDesastre" : null,
+  "idDesastre" : "1",
   "tipoDesastre" : "TEMBLOR",
   "personasAfectadas" : 17,
   "fecha" : [ 2025, 12, 1 ],
@@ -35,7 +35,7 @@
 }, {
   "magnitud" : 5,
   "nombre" : "tsunami ",
-  "idDesastre" : null,
+  "idDesastre" : "4",
   "tipoDesastre" : "INUNDACION",
   "personasAfectadas" : 120,
   "fecha" : [ 2025, 11, 14 ],
