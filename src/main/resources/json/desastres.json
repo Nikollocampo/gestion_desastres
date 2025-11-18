@@ -164,8 +164,7 @@
       "carrera" : "15",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
-<<<<<<< HEAD
-=======
+
   }, {
     "idEquipo" : "E5",
     "integrantesDisponibles" : 37,
@@ -177,7 +176,7 @@
       "carrera" : "12",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
->>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
+
   } ]
 }, {
   "magnitud" : 5,
@@ -194,7 +193,7 @@
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
   "equiposAsignados" : [ ]
-<<<<<<< HEAD
+
 }, {
   "magnitud" : 3,
   "nombre" : "inuncadion",
@@ -221,6 +220,5 @@
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
   } ]
-=======
->>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
+
 } ]
