@@ -1,1 +1,14 @@
-[]
+[ {
+  "idEquipo" : "1",
+  "integrantesDisponibles" : 4,
+  "tipoEquipo" : "BOMBEROS",
+  "ubicacion" : {
+    "id" : "f624219f-1441-4fb9-8d6e-17aaafa7d6c8",
+    "nombre" : "INCENDIO CASA",
+    "calle" : "Calle 73",
+    "carrera" : "Carrera 23",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : 4.6540975,
+    "lng" : -74.0725045
+  }
+} ]

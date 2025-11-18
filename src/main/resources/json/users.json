@@ -88,4 +88,16 @@
   "email" : "operador_update@correo.com",
   "contrasena" : "clave123",
   "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "8415e42d-abf9-4755-86e3-941457d2ec9f",
+  "nombre" : "isabela",
+  "email" : "isabela@gmail.com",
+  "contrasena" : "123",
+  "rol" : "OPERADOR_EMERGENCIA"
+}, {
+  "id" : "4e7ecb52-74c2-4377-b715-bca6846866b4",
+  "nombre" : "Nikoll",
+  "email" : "nikollocampo@gmail.com",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
 } ]
