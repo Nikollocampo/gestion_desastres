@@ -163,43 +163,53 @@ public class AdministradorService {
     /**
      * Asigna recursos a desastres según prioridad usando una cola de prioridad.
      */
-    public OperacionSimpleResponseDto asignarRecursosPrioridad() throws IOException {
+    public List<AsignacionRecursoDto> asignarRecursosPrioridad() throws IOException {
         List<Desastre> desastres = desastreJsonRepository.findAll();
-        List<Recurso> recursos = recursoJsonRepository.findAll();
-        OperacionSimpleResponseDto res = new OperacionSimpleResponseDto();
-        if (desastres.isEmpty() || recursos.isEmpty()) {
-            res.setExito(false);
-            res.setMensaje("No hay desastres o recursos disponibles");
-            return res;
+        List<Recurso> recursosOriginales = recursoJsonRepository.findAll();
+        List<AsignacionRecursoDto> asignaciones = new ArrayList<>();
+        if (desastres.isEmpty() || recursosOriginales.isEmpty()) {
+            return asignaciones;
         }
         ColaPrioridad<Desastre> cola = new ColaPrioridad<>();
         desastres.forEach(cola::encolar);
-        boolean huboAsignacion = false;
+        // Usar una copia de recursos para cada desastre
         while (!cola.estaVacia()) {
             Desastre desastre = cola.atenderSiguiente();
             if (desastre == null) break;
-            for (Recurso recurso : recursos) {
-                int cantidadNecesaria = switch (recurso.getTipo()) {
-                    case ALIMENTO -> desastre.getPersonasAfectadas() * 3;
-                    case MEDICAMENTO -> desastre.getPersonasAfectadas();
-                    default -> 0;
-                };
+            AsignacionRecursoDto asignacion = new AsignacionRecursoDto();
+            asignacion.setDesastre(desastre.getNombre());
+            List<RecursoAsignadoDto> recursosAsignados = new ArrayList<>();
+            for (Recurso recursoOriginal : recursosOriginales) {
+                // Usar la cantidad actual del recurso
+                int cantidadDisponible = recursoOriginal.getCantidad();
+                int cantidadNecesaria = 0;
+                if (recursoOriginal.getTipo() == TipoRecurso.ALIMENTO) {
+                    cantidadNecesaria = desastre.getPersonasAfectadas() * 3;
+                } else if (recursoOriginal.getTipo() == TipoRecurso.MEDICAMENTO) {
+                    cantidadNecesaria = desastre.getPersonasAfectadas();
+                }
+                int cantidadAsignada = 0;
                 if (cantidadNecesaria > 0) {
-                    if (recurso.getCantidad() >= cantidadNecesaria) {
-                        recurso.setCantidad(recurso.getCantidad() - cantidadNecesaria);
-                        huboAsignacion = true;
-                    } else if (recurso.getCantidad() > 0) {
-                        int disponible = recurso.getCantidad();
-                        recurso.setCantidad(0);
-                        huboAsignacion = true;
+                    if (cantidadDisponible >= cantidadNecesaria) {
+                        cantidadAsignada = cantidadNecesaria;
+                        recursoOriginal.setCantidad(cantidadDisponible - cantidadNecesaria);
+                    } else if (cantidadDisponible > 0) {
+                        cantidadAsignada = cantidadDisponible;
+                        recursoOriginal.setCantidad(0);
                     }
                 }
+                if (cantidadAsignada > 0) {
+                    RecursoAsignadoDto recursoDto = new RecursoAsignadoDto();
+                    recursoDto.setTipo(recursoOriginal.getTipo().toString());
+                    recursoDto.setCantidad(cantidadAsignada);
+                    recursosAsignados.add(recursoDto);
+                }
             }
+            asignacion.setRecursos(recursosAsignados);
+            asignaciones.add(asignacion);
         }
-        recursoJsonRepository.saveAll(recursos);
-        res.setExito(huboAsignacion);
-        res.setMensaje(huboAsignacion ? "Asignación de recursos procesada" : "No se pudo asignar recursos");
-        return res;
+        recursoJsonRepository.saveAll(recursosOriginales);
+        return asignaciones;
     }
 
     /**
@@ -214,9 +224,9 @@ public class AdministradorService {
                 java.nio.charset.StandardCharsets.UTF_8,
                 java.nio.file.StandardOpenOption.CREATE,
                 java.nio.file.StandardOpenOption.TRUNCATE_EXISTING)) {
-            writer.write("═══════════════════════════════════════════════════════════════\n");
+            writer.write("═══════════════════════════════════════════════���═══════════════\n");
             writer.write("                  REPORTE DE DESASTRES ATENDIDOS\n");
-            writer.write("═══════════════════════════════════════════════════════════════\n\n");
+            writer.write("═══════════════════════════════���═══════════════════════════════\n\n");
             if (desastres == null || desastres.isEmpty()) {
                 writer.write("No se han registrado desastres atendidos.\n");
             } else {
@@ -243,4 +253,3 @@ public class AdministradorService {
         return res;
     }
 }
-

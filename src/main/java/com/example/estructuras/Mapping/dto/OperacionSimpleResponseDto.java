@@ -1,12 +1,21 @@
 package com.example.estructuras.Mapping.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.Instant;
+import java.util.List;
 
 public class OperacionSimpleResponseDto {
+    @JsonProperty("exito")
     private boolean exito;
+    @JsonProperty("mensaje")
     private String mensaje;
+    @JsonProperty("codigo")
     private String codigo; // opcional para categorizar el resultado
+    @JsonProperty("timestamp")
     private Instant timestamp;
+    @JsonProperty("asignaciones")
+    private List<AsignacionRecursoDto> asignaciones;
 
     public OperacionSimpleResponseDto() {}
 
@@ -33,5 +42,6 @@ public class OperacionSimpleResponseDto {
     public void setCodigo(String codigo) { this.codigo = codigo; }
     public Instant getTimestamp() { return timestamp; }
     public void setTimestamp(Instant timestamp) { this.timestamp = timestamp; }
+    public List<AsignacionRecursoDto> getAsignaciones() { return asignaciones; }
+    public void setAsignaciones(List<AsignacionRecursoDto> asignaciones) { this.asignaciones = asignaciones; }
 }
-

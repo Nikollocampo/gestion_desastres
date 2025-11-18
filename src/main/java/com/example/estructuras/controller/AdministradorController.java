@@ -32,7 +32,7 @@ public class AdministradorController {
     }
 
     @PostMapping("/recursos/prioridad")
-    public ResponseEntity<OperacionSimpleResponseDto> asignarRecursosPrioridad() throws IOException {
+    public ResponseEntity<List<AsignacionRecursoDto>> asignarRecursosPrioridad() throws IOException {
         return ResponseEntity.ok(administradorService.asignarRecursosPrioridad());
     }
 

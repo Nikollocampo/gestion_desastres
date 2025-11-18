@@ -34,6 +34,17 @@
       "carrera" : "15",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
+  }, {
+    "idEquipo" : "E5",
+    "integrantesDisponibles" : 17,
+    "tipoEquipo" : "BOMBEROS",
+    "ubicacion" : {
+      "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+      "nombre" : "Bienestar Sur",
+      "calle" : "30",
+      "carrera" : "12",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
   } ]
 }, {
   "magnitud" : 6,
@@ -153,6 +164,20 @@
       "carrera" : "15",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
+<<<<<<< HEAD
+=======
+  }, {
+    "idEquipo" : "E5",
+    "integrantesDisponibles" : 37,
+    "tipoEquipo" : "BOMBEROS",
+    "ubicacion" : {
+      "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+      "nombre" : "Bienestar Sur",
+      "calle" : "30",
+      "carrera" : "12",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
+>>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
   } ]
 }, {
   "magnitud" : 5,
@@ -169,6 +194,7 @@
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
   "equiposAsignados" : [ ]
+<<<<<<< HEAD
 }, {
   "magnitud" : 3,
   "nombre" : "inuncadion",
@@ -195,4 +221,6 @@
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
   } ]
+=======
+>>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
 } ]

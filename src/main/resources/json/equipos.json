@@ -32,6 +32,7 @@
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
 }, {
+<<<<<<< HEAD
   "idEquipo" : "223",
   "integrantesDisponibles" : 4,
   "tipoEquipo" : "BOMBEROS",
@@ -51,10 +52,32 @@
     "nombre" : "laureles",
     "calle" : "732",
     "carrera" : "432",
+=======
+  "idEquipo" : "E4",
+  "integrantesDisponibles" : 43,
+  "tipoEquipo" : "POLICIAS",
+  "ubicacion" : {
+    "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+    "nombre" : "Colegio San Luis",
+    "calle" : "calle 4",
+    "carrera" : "carrera 10",
+    "tipoUbicacion" : "REFUGIO"
+  }
+}, {
+  "idEquipo" : "E5",
+  "integrantesDisponibles" : 17,
+  "tipoEquipo" : "BOMBEROS",
+  "ubicacion" : {
+    "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+    "nombre" : "Bienestar Sur",
+    "calle" : "30",
+    "carrera" : "12",
+>>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
 }, {
   "idEquipo" : "E1",
+<<<<<<< HEAD
   "integrantesDisponibles" : 80,
   "tipoEquipo" : "MEDICOS",
   "ubicacion" : {
@@ -62,6 +85,15 @@
     "nombre" : "Clinica sur",
     "calle" : "5",
     "carrera" : "20",
+=======
+  "integrantesDisponibles" : 27,
+  "tipoEquipo" : "MEDICOS",
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+>>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
 } ]
