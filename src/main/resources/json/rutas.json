@@ -178,4 +178,24 @@
     "lng" : null
   },
   "distancia" : 7.0
+}, {
+  "origen" : {
+    "id" : "f624219f-1441-4fb9-8d6e-17aaafa7d6c8",
+    "nombre" : "INCENDIO CASA",
+    "calle" : "Calle 73",
+    "carrera" : "Carrera 23",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : 4.6540975,
+    "lng" : -74.0725045
+  },
+  "destino" : {
+    "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+    "nombre" : "Colegio San Luis",
+    "calle" : "Calle 4",
+    "carrera" : "Carrera 10",
+    "tipoUbicacion" : "REFUGIO",
+    "lat" : 4.5854498,
+    "lng" : -74.0766639
+  },
+  "distancia" : 233.0
 } ]
