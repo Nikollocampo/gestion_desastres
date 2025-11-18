@@ -26,7 +26,7 @@
   "id" : "6",
   "nombre" : "Agua",
   "tipo" : "ALIMENTO",
-  "cantidad" : 53274,
+  "cantidad" : 50985,
   "ubicacion" : {
     "id" : "U1",
     "nombre" : "Centro Salud",
