@@ -1,1 +1,15 @@
-[]
+[ {
+  "id" : "b150c127-3d18-420e-a28b-fac7c9171d97",
+  "nombre" : "Agua",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 47687,
+  "ubicacion" : {
+    "id" : "ca54312d-d335-4cec-9605-a1799ec1aa9d",
+    "nombre" : null,
+    "calle" : null,
+    "carrera" : null,
+    "tipoUbicacion" : null,
+    "lat" : null,
+    "lng" : null
+  }
+} ]
