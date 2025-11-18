@@ -34,6 +34,17 @@
       "carrera" : "15",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
+  }, {
+    "idEquipo" : "E5",
+    "integrantesDisponibles" : 17,
+    "tipoEquipo" : "BOMBEROS",
+    "ubicacion" : {
+      "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+      "nombre" : "Bienestar Sur",
+      "calle" : "30",
+      "carrera" : "12",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
   } ]
 }, {
   "magnitud" : 6,
@@ -64,44 +75,40 @@
     "carrera" : "15",
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
-  "equiposAsignados" : [
-    {
-      "idEquipo" : "E1",
-      "integrantesDisponibles" : 5,
-      "tipoEquipo" : "MEDICOS",
-      "ubicacion" : {
-        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
-        "nombre" : "Centro Salud",
-        "calle" : "10",
-        "carrera" : "15",
-        "tipoUbicacion" : "CENTRO_AYUDA"
-      }
-    },
-    {
-      "idEquipo" : "E2",
-      "integrantesDisponibles" : 8,
-      "tipoEquipo" : "MEDICOS",
-      "ubicacion" : {
-        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
-        "nombre" : "Centro Salud",
-        "calle" : "10",
-        "carrera" : "15",
-        "tipoUbicacion" : "CENTRO_AYUDA"
-      }
-    },
-    {
-      "idEquipo" : "E3",
-      "integrantesDisponibles" : 6,
-      "tipoEquipo" : "MEDICOS",
-      "ubicacion" : {
-        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
-        "nombre" : "Centro Salud",
-        "calle" : "10",
-        "carrera" : "15",
-        "tipoUbicacion" : "CENTRO_AYUDA"
-      }
+  "equiposAsignados" : [ {
+    "idEquipo" : "E1",
+    "integrantesDisponibles" : 5,
+    "tipoEquipo" : "MEDICOS",
+    "ubicacion" : {
+      "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+      "nombre" : "Centro Salud",
+      "calle" : "10",
+      "carrera" : "15",
+      "tipoUbicacion" : "CENTRO_AYUDA"
     }
-  ]
+  }, {
+    "idEquipo" : "E2",
+    "integrantesDisponibles" : 8,
+    "tipoEquipo" : "MEDICOS",
+    "ubicacion" : {
+      "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+      "nombre" : "Centro Salud",
+      "calle" : "10",
+      "carrera" : "15",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
+  }, {
+    "idEquipo" : "E3",
+    "integrantesDisponibles" : 6,
+    "tipoEquipo" : "MEDICOS",
+    "ubicacion" : {
+      "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+      "nombre" : "Centro Salud",
+      "calle" : "10",
+      "carrera" : "15",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
+  } ]
 }, {
   "magnitud" : 4,
   "nombre" : "Temblor leve",
@@ -146,20 +153,29 @@
     "carrera" : "15",
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
-  "equiposAsignados" : [
-    {
-      "idEquipo" : "E1",
-      "integrantesDisponibles" : 10,
-      "tipoEquipo" : "MEDICOS",
-      "ubicacion" : {
-        "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
-        "nombre" : "Centro Salud",
-        "calle" : "10",
-        "carrera" : "15",
-        "tipoUbicacion" : "CENTRO_AYUDA"
-      }
+  "equiposAsignados" : [ {
+    "idEquipo" : "E1",
+    "integrantesDisponibles" : 10,
+    "tipoEquipo" : "MEDICOS",
+    "ubicacion" : {
+      "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+      "nombre" : "Centro Salud",
+      "calle" : "10",
+      "carrera" : "15",
+      "tipoUbicacion" : "CENTRO_AYUDA"
     }
-  ]
+  }, {
+    "idEquipo" : "E5",
+    "integrantesDisponibles" : 37,
+    "tipoEquipo" : "BOMBEROS",
+    "ubicacion" : {
+      "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+      "nombre" : "Bienestar Sur",
+      "calle" : "30",
+      "carrera" : "12",
+      "tipoUbicacion" : "CENTRO_AYUDA"
+    }
+  } ]
 }, {
   "magnitud" : 5,
   "nombre" : "Derrumbe en túnel",
@@ -174,5 +190,5 @@
     "carrera" : "15",
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
-  "equiposAsignados" : []
+  "equiposAsignados" : [ ]
 } ]

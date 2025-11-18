@@ -31,4 +31,37 @@
     "carrera" : "15",
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
+}, {
+  "idEquipo" : "E4",
+  "integrantesDisponibles" : 43,
+  "tipoEquipo" : "POLICIAS",
+  "ubicacion" : {
+    "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+    "nombre" : "Colegio San Luis",
+    "calle" : "calle 4",
+    "carrera" : "carrera 10",
+    "tipoUbicacion" : "REFUGIO"
+  }
+}, {
+  "idEquipo" : "E5",
+  "integrantesDisponibles" : 17,
+  "tipoEquipo" : "BOMBEROS",
+  "ubicacion" : {
+    "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+    "nombre" : "Bienestar Sur",
+    "calle" : "30",
+    "carrera" : "12",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "idEquipo" : "E1",
+  "integrantesDisponibles" : 27,
+  "tipoEquipo" : "MEDICOS",
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "10",
+    "carrera" : "15",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
 } ]
