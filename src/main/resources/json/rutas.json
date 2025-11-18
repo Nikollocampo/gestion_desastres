@@ -4,14 +4,18 @@
     "nombre" : "Centro Salud",
     "calle" : "10",
     "carrera" : "15",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "093a12e2-35df-4178-af4b-b976470c30c1",
     "nombre" : "Paracetamol",
     "calle" : null,
     "carrera" : null,
-    "tipoUbicacion" : null
+    "tipoUbicacion" : null,
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 15.5
 }, {
@@ -20,14 +24,18 @@
     "nombre" : "Centro Salud",
     "calle" : "10",
     "carrera" : "15",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
     "nombre" : "Bienestar Sur",
     "calle" : "30",
     "carrera" : "12",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 15.5
 }, {
@@ -36,14 +44,18 @@
     "nombre" : "Salud Integral",
     "calle" : "18",
     "carrera" : "3",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "39254f3e-4893-408b-8505-df24c74e844d",
     "nombre" : "Colegio San Luis",
     "calle" : "calle 4",
     "carrera" : "carrera 10",
-    "tipoUbicacion" : "REFUGIO"
+    "tipoUbicacion" : "REFUGIO",
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 23.4
 }, {
@@ -52,14 +64,18 @@
     "nombre" : "Clinica sur",
     "calle" : "5",
     "carrera" : "20",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
     "nombre" : "Centro Salud",
     "calle" : "10",
     "carrera" : "15",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 9.0
 }, {
@@ -68,14 +84,18 @@
     "nombre" : "Centro Salud",
     "calle" : "10",
     "carrera" : "15",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "bc2032a7-017d-457e-8ca6-ab57a2193d35",
     "nombre" : "Clinica sur",
     "calle" : "5",
     "carrera" : "20",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 9.0
 }, {
@@ -84,14 +104,18 @@
     "nombre" : "Clinica sur",
     "calle" : "5",
     "carrera" : "20",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
     "nombre" : "Salud Integral",
     "calle" : "18",
     "carrera" : "3",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 10.0
 }, {
@@ -100,14 +124,58 @@
     "nombre" : "Centro Salud",
     "calle" : "10",
     "carrera" : "15",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "destino" : {
     "id" : "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
     "nombre" : "Salud Integral",
     "calle" : "18",
     "carrera" : "3",
-    "tipoUbicacion" : "CENTRO_AYUDA"
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
   },
   "distancia" : 19.0
+}, {
+  "origen" : {
+    "id" : "origen-id",
+    "nombre" : "Origen",
+    "calle" : "Calle O",
+    "carrera" : "Carrera O",
+    "tipoUbicacion" : "REFUGIO",
+    "lat" : null,
+    "lng" : null
+  },
+  "destino" : {
+    "id" : "destino-id",
+    "nombre" : "Destino",
+    "calle" : "Calle D",
+    "carrera" : "Carrera D",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  },
+  "distancia" : 12.5
+}, {
+  "origen" : {
+    "id" : "origen-id",
+    "nombre" : "Origen",
+    "calle" : "Calle O",
+    "carrera" : "Carrera O",
+    "tipoUbicacion" : "REFUGIO",
+    "lat" : null,
+    "lng" : null
+  },
+  "destino" : {
+    "id" : "destino-id",
+    "nombre" : "Destino",
+    "calle" : "Calle D",
+    "carrera" : "Carrera D",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  },
+  "distancia" : 7.0
 } ]

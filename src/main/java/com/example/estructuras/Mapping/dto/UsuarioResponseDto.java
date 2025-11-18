@@ -24,4 +24,5 @@ public class UsuarioResponseDto {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public Rol getRol() { return rol; }
     public void setRol(Rol rol) { this.rol = rol; }
+
 }

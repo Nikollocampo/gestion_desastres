@@ -1,110 +1,98 @@
-[
-  {
-    "id": "7b958f06-cd4c-4316-81b9-254c92216a07",
-    "nombre": "Centro Salud",
-    "calle": "Calle 10",
-    "carrera": "Carrera 15",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6016075,
-    "lng": -74.0720922
-  },
-  {
-    "id": "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
-    "nombre": "Bienestar Sur",
-    "calle": "Calle 30",
-    "carrera": "Carrera 12",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6224434,
-    "lng": -74.0783228
-  },
-  {
-    "id": "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
-    "nombre": "Salud Integral",
-    "calle": "Calle 18",
-    "carrera": "Carrera 3",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6152201,
-    "lng": -74.0739489
-  },
-  {
-    "id": "0b751e16-3bed-4230-86e2-bd75182ab37e",
-    "nombre": "Centro Esperanza",
-    "calle": "Calle 5",
-    "carrera": "Carrera 20",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.5893162,
-    "lng": -74.0852959
-  },
-  {
-    "id": "bc2032a7-017d-457e-8ca6-ab57a2193d35",
-    "nombre": "Clinica Sur",
-    "calle": "Calle 5",
-    "carrera": "Carrera 20",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.5893162,
-    "lng": -74.0852959
-  },
-  {
-    "id": "093a12e2-35df-4178-af4b-b976470c30c1",
-    "nombre": "Paracetamol",
-    "calle": "Calle 13",
-    "carrera": "Carrera 7",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6010757,
-    "lng": -74.0706498
-  },
-  {
-    "id": "39254f3e-4893-408b-8505-df24c74e844d",
-    "nombre": "Colegio San Luis",
-    "calle": "Calle 4",
-    "carrera": "Carrera 10",
-    "tipoUbicacion": "REFUGIO",
-    "lat": 4.5854498,
-    "lng": -74.0766639
-  },
-  {
-    "id": "4f76f80d-1020-4043-9452-c76bdf6fe4fa",
-    "nombre": "nikoll",
-    "calle": "Calle 73",
-    "carrera": "Carrera 42",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6586828,
-    "lng": -74.0575563
-  },
-  {
-    "id": "28269df0-c729-4e42-862a-6ec847682dc0",
-    "nombre": "BARRIO",
-    "calle": "Calle 50",
-    "carrera": "Carrera 30",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6487289,
-    "lng": -74.0682339
-  },
-  {
-    "id": "ca54312d-d335-4cec-9605-a1799ec1aa9d",
-    "nombre": "laureles",
-    "calle": "Calle 73",
-    "carrera": "Carrera 42",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6586828,
-    "lng": -74.0575563
-  },
-  {
-    "id": "b98f1eb4-0410-4c19-a6d4-a58f7509bdb0",
-    "nombre": "jhan",
-    "calle": "Calle 2",
-    "carrera": "Carrera 1",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.581684,
-    "lng": -74.0677321
-  },
-  {
-    "id": "f624219f-1441-4fb9-8d6e-17aaafa7d6c8",
-    "nombre": "INCENDIO CASA",
-    "calle": "Calle 73",
-    "carrera": "Carrera 23",
-    "tipoUbicacion": "CENTRO_AYUDA",
-    "lat": 4.6540975,
-    "lng": -74.0725045
-  }
-]
+[ {
+  "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+  "nombre" : "Centro Salud",
+  "calle" : "Calle 10",
+  "carrera" : "Carrera 15",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6016075,
+  "lng" : -74.0720922
+}, {
+  "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
+  "nombre" : "Bienestar Sur",
+  "calle" : "Calle 30",
+  "carrera" : "Carrera 12",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6224434,
+  "lng" : -74.0783228
+}, {
+  "id" : "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
+  "nombre" : "Salud Integral",
+  "calle" : "Calle 18",
+  "carrera" : "Carrera 3",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6152201,
+  "lng" : -74.0739489
+}, {
+  "id" : "0b751e16-3bed-4230-86e2-bd75182ab37e",
+  "nombre" : "Centro Esperanza",
+  "calle" : "Calle 5",
+  "carrera" : "Carrera 20",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.5893162,
+  "lng" : -74.0852959
+}, {
+  "id" : "bc2032a7-017d-457e-8ca6-ab57a2193d35",
+  "nombre" : "Clinica Sur",
+  "calle" : "Calle 5",
+  "carrera" : "Carrera 20",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.5893162,
+  "lng" : -74.0852959
+}, {
+  "id" : "093a12e2-35df-4178-af4b-b976470c30c1",
+  "nombre" : "Paracetamol",
+  "calle" : "Calle 13",
+  "carrera" : "Carrera 7",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6010757,
+  "lng" : -74.0706498
+}, {
+  "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+  "nombre" : "Colegio San Luis",
+  "calle" : "Calle 4",
+  "carrera" : "Carrera 10",
+  "tipoUbicacion" : "REFUGIO",
+  "lat" : 4.5854498,
+  "lng" : -74.0766639
+}, {
+  "id" : "4f76f80d-1020-4043-9452-c76bdf6fe4fa",
+  "nombre" : "nikoll",
+  "calle" : "Calle 73",
+  "carrera" : "Carrera 42",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6586828,
+  "lng" : -74.0575563
+}, {
+  "id" : "28269df0-c729-4e42-862a-6ec847682dc0",
+  "nombre" : "BARRIO",
+  "calle" : "Calle 50",
+  "carrera" : "Carrera 30",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6487289,
+  "lng" : -74.0682339
+}, {
+  "id" : "ca54312d-d335-4cec-9605-a1799ec1aa9d",
+  "nombre" : "laureles",
+  "calle" : "Calle 73",
+  "carrera" : "Carrera 42",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6586828,
+  "lng" : -74.0575563
+}, {
+  "id" : "b98f1eb4-0410-4c19-a6d4-a58f7509bdb0",
+  "nombre" : "jhan",
+  "calle" : "Calle 2",
+  "carrera" : "Carrera 1",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.581684,
+  "lng" : -74.0677321
+}, {
+  "id" : "f624219f-1441-4fb9-8d6e-17aaafa7d6c8",
+  "nombre" : "INCENDIO CASA",
+  "calle" : "Calle 73",
+  "carrera" : "Carrera 23",
+  "tipoUbicacion" : "CENTRO_AYUDA",
+  "lat" : 4.6540975,
+  "lng" : -74.0725045
+
+} ]
