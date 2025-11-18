@@ -102,7 +102,7 @@ public class OperadorEmergenciaService {
 
     /**
      * Monitorear ubicaciones - muestra información de ubicaciones disponibles
-     */
+     *      */
     public List<String> monitorearUbicaciones() throws IOException {
         List<Ubicacion> ubicaciones = ubicacionRepo.findAll();
         List<String> resultado = new ArrayList<>();

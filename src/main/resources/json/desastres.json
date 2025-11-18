@@ -47,11 +47,11 @@
     }
   } ]
 }, {
-  "magnitud" : 6,
+  "magnitud" : 1,
   "nombre" : "Derrumbe en colina",
   "idDesastre" : "D2",
   "tipoDesastre" : "DERRUMBE",
-  "personasAfectadas" : 50,
+  "personasAfectadas" : 1,
   "fecha" : [ 2025, 11, 17 ],
   "ubicacion" : {
     "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
@@ -164,8 +164,6 @@
       "carrera" : "15",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
-<<<<<<< HEAD
-=======
   }, {
     "idEquipo" : "E5",
     "integrantesDisponibles" : 37,
@@ -177,7 +175,6 @@
       "carrera" : "12",
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
->>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
   } ]
 }, {
   "magnitud" : 5,
@@ -194,7 +191,6 @@
     "tipoUbicacion" : "CENTRO_AYUDA"
   },
   "equiposAsignados" : [ ]
-<<<<<<< HEAD
 }, {
   "magnitud" : 3,
   "nombre" : "inuncadion",
@@ -221,6 +217,4 @@
       "tipoUbicacion" : "CENTRO_AYUDA"
     }
   } ]
-=======
->>>>>>> 60f4fcf63eb8f65ed43876cc41463f5621506e6e
 } ]
