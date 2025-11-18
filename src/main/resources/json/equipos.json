@@ -31,4 +31,37 @@
     "carrera" : "15",
     "tipoUbicacion" : "CENTRO_AYUDA"
   }
+}, {
+  "idEquipo" : "223",
+  "integrantesDisponibles" : 4,
+  "tipoEquipo" : "BOMBEROS",
+  "ubicacion" : {
+    "id" : "28269df0-c729-4e42-862a-6ec847682dc0",
+    "nombre" : "BARRIO",
+    "calle" : "MC",
+    "carrera" : "MCX",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "idEquipo" : "321",
+  "integrantesDisponibles" : 70,
+  "tipoEquipo" : "MEDICOS",
+  "ubicacion" : {
+    "id" : "ca54312d-d335-4cec-9605-a1799ec1aa9d",
+    "nombre" : "laureles",
+    "calle" : "732",
+    "carrera" : "432",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
+}, {
+  "idEquipo" : "E1",
+  "integrantesDisponibles" : 80,
+  "tipoEquipo" : "MEDICOS",
+  "ubicacion" : {
+    "id" : "bc2032a7-017d-457e-8ca6-ab57a2193d35",
+    "nombre" : "Clinica sur",
+    "calle" : "5",
+    "carrera" : "20",
+    "tipoUbicacion" : "CENTRO_AYUDA"
+  }
 } ]

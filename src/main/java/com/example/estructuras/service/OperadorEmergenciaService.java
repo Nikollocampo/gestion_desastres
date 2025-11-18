@@ -2,6 +2,7 @@ package com.example.estructuras.service;
 
 import com.example.estructuras.Mapping.dto.RegisterRequestDto;
 import com.example.estructuras.Mapping.dto.UsuarioResponseDto;
+import com.example.estructuras.Mapping.dto.EvacuacionResponseDto;
 import com.example.estructuras.exception.UserAlreadyExistsException;
 import com.example.estructuras.model.*;
 import com.example.estructuras.repository.UserJsonRepository;
@@ -199,6 +200,69 @@ public class OperadorEmergenciaService {
         return resultado;
     }
 
+    /**
+     * Gestionar evacuaciones por prioridad y riesgo de zona, retornando detalle
+     */
+    public List<EvacuacionResponseDto> gestionarEvacuacionesDetallado() throws IOException {
+        List<Desastre> desastres = desastreRepo.findAll();
+        List<EvacuacionResponseDto> resultado = new ArrayList<>();
+        if (desastres == null || desastres.isEmpty()) {
+            return resultado;
+        }
+        Map<Ubicacion, String> riesgoPorZona = new HashMap<>();
+        for (Desastre d : desastres) {
+            if (d.getUbicacion() == null) continue;
+            String prioridadActual = d.asignarPrioridad();
+            String prioridadPrevia = riesgoPorZona.get(d.getUbicacion());
+            if (prioridadPrevia == null || prioridadValor(prioridadActual) > prioridadValor(prioridadPrevia)) {
+                riesgoPorZona.put(d.getUbicacion(), prioridadActual);
+            }
+        }
+        Comparator<Desastre> cmp = (a, b) -> {
+            String riesgoA = riesgoPorZona.getOrDefault(a.getUbicacion(), "Baja");
+            String riesgoB = riesgoPorZona.getOrDefault(b.getUbicacion(), "Baja");
+            int cmpRiesgo = Integer.compare(prioridadValor(riesgoB), prioridadValor(riesgoA));
+            if (cmpRiesgo != 0) return cmpRiesgo;
+            int cmpPersonas = Integer.compare(b.getPersonasAfectadas(), a.getPersonasAfectadas());
+            if (cmpPersonas != 0) return cmpPersonas;
+            return Integer.compare(b.getMagnitud(), a.getMagnitud());
+        };
+        ColaPrioridad<Desastre> cola = new ColaPrioridad<>(cmp);
+        cola.encolarTodos(desastres);
+        while (!cola.estaVacia()) {
+            Desastre d = cola.atenderSiguiente();
+            if (d == null) break;
+            String riesgoZona = riesgoPorZona.getOrDefault(d.getUbicacion(), "Baja");
+            int personasEvacuadas = Math.min(d.getPersonasAfectadas(), calcularPersonasEvacuadasEstimadas(d));
+            resultado.add(new EvacuacionResponseDto(
+                    UUID.randomUUID().toString(),
+                    d.getIdDesastre(),
+                    d.getNombre(),
+                    d.getUbicacion() != null ? d.getUbicacion().getId() : null,
+                    d.getUbicacion() != null ? d.getUbicacion().getNombre() : null,
+                    d.asignarPrioridad(),
+                    riesgoZona,
+                    d.getPersonasAfectadas(),
+                    personasEvacuadas,
+                    d.getMagnitud(),
+                    java.time.LocalDateTime.now()
+            ));
+        }
+        return resultado;
+    }
+
+    private int calcularPersonasEvacuadasEstimadas(Desastre d) {
+        // Regla simple: porcentaje según prioridad
+        String prioridad = d.asignarPrioridad();
+        double factor = switch (prioridad) {
+            case "Alta" -> 0.8;
+            case "Media" -> 0.5;
+            case "Baja" -> 0.3;
+            default -> 0.2;
+        };
+        return (int) Math.round(d.getPersonasAfectadas() * factor);
+    }
+
     private int prioridadValor(String prioridad) {
         return switch (prioridad) {
             case "Alta" -> 3;
@@ -208,4 +272,3 @@ public class OperadorEmergenciaService {
         };
     }
 }
-

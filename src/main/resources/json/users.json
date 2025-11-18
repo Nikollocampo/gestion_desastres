@@ -64,4 +64,16 @@
   "email" : "isaospinabaq@gmail.com",
   "contrasena" : "1234",
   "rol" : "ADMINISTRADOR"
+}, {
+  "id" : "6a3fe046-a829-4748-9d1b-652958b5be13",
+  "nombre" : "dani",
+  "email" : "@gmail",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
+}, {
+  "id" : "3f68ca30-5afa-4aec-b517-20b6119578fb",
+  "nombre" : "dani",
+  "email" : "@gmail",
+  "contrasena" : "123",
+  "rol" : "ADMINISTRADOR"
 } ]

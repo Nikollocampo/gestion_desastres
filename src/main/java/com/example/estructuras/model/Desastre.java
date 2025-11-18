@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Desastre implements Comparable<Desastre>{
 
+
     private int magnitud;
     private String nombre;
     private String idDesastre;
@@ -14,7 +15,6 @@ public class Desastre implements Comparable<Desastre>{
     private LocalDate fecha;
     private Ubicacion ubicacion;
     private List<Equipo> equiposAsignados;
-
     public Desastre(int magnitud, String nombre, String idDesastre, TipoDesastre tipoDesastre,
                     int personasAfectadas, LocalDate fecha,Ubicacion ubicacion) {
         this.magnitud = magnitud;
