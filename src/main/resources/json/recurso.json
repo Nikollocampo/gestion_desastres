@@ -96,4 +96,116 @@
     "lat" : null,
     "lng" : null
   }
+}, {
+  "id" : "16cbe1ba-f26d-4f6c-894a-c3a8e7a5bb86",
+  "nombre" : "atun",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "ca54312d-d335-4cec-9605-a1799ec1aa9d",
+    "nombre" : "laureles",
+    "calle" : "Calle 73",
+    "carrera" : "Carrera 42",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "f382c69e-10ac-445e-8713-fa81cdb4b10b",
+  "nombre" : "Enlatados",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "2",
+    "nombre" : "centro",
+    "calle" : "20",
+    "carrera" : "50",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "c00c1038-6115-494b-b531-789eae43d788",
+  "nombre" : "bebidas",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "0b751e16-3bed-4230-86e2-bd75182ab37e",
+    "nombre" : "Centro Esperanza",
+    "calle" : "Calle 5",
+    "carrera" : "Carrera 20",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "a5783611-74f0-45d5-86a7-713f82442731",
+  "nombre" : "enlatados",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
+    "nombre" : "Salud Integral",
+    "calle" : "Calle 18",
+    "carrera" : "Carrera 3",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "21cf1b35-1952-4452-8222-70c671066875",
+  "nombre" : "Atun",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
+    "nombre" : "Centro Salud",
+    "calle" : "Calle 10",
+    "carrera" : "Carrera 15",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "86b01216-4f31-4a0a-a856-ba2a3ae79f69",
+  "nombre" : "arroz",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 0,
+  "ubicacion" : {
+    "id" : "bc2032a7-017d-457e-8ca6-ab57a2193d35",
+    "nombre" : "Clinica Sur",
+    "calle" : "Calle 5",
+    "carrera" : "Carrera 20",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "c1413b9e-0bfd-4770-8c8c-633b13725a15",
+  "nombre" : "bebida",
+  "tipo" : "ALIMENTO",
+  "cantidad" : 20,
+  "ubicacion" : {
+    "id" : "0b751e16-3bed-4230-86e2-bd75182ab37e",
+    "nombre" : "Centro Esperanza",
+    "calle" : "Calle 5",
+    "carrera" : "Carrera 20",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
+}, {
+  "id" : "8dac6bcf-825e-428f-b0a5-e55e6965376b",
+  "nombre" : "acetaminofen ",
+  "tipo" : "MEDICAMENTO",
+  "cantidad" : 20,
+  "ubicacion" : {
+    "id" : "0b751e16-3bed-4230-86e2-bd75182ab37e",
+    "nombre" : "Centro Esperanza",
+    "calle" : "Calle 5",
+    "carrera" : "Carrera 20",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : null,
+    "lng" : null
+  }
 } ]

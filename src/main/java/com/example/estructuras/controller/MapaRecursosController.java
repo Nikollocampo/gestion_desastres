@@ -30,36 +30,27 @@ public class MapaRecursosController {
         }
     }
 
-    @GetMapping("/ubicacion/ubicacionId")
+    @GetMapping("/ubicacion/{ubicacionId}")
     public ResponseEntity<InventarioUbicacionResponseDto> obtenerRecursosPorUbicacion(@PathVariable String ubicacionId) {
         Map<TipoRecurso, Recurso> recursos = mapaRecursosService.obtenerRecursosPorUbicacion(ubicacionId);
-
         Map<String, RecursoResponseDto> recursosDto = new HashMap<>();
-        recursos.forEach((tipo, recurso) -> {
-            RecursoResponseDto dto = convertirARecursoDto(recurso);
-            recursosDto.put(tipo.name(), dto);
-        });
-
+        recursos.forEach((tipo, recurso) -> recursosDto.put(tipo.name(), convertirARecursoDto(recurso)));
         InventarioUbicacionResponseDto response = new InventarioUbicacionResponseDto(
-            ubicacionId,
-            "Ubicación " + ubicacionId, // Podrías obtener el nombre real de la ubicación
-            recursosDto
+                ubicacionId,
+                "Ubicación " + ubicacionId,
+                recursosDto
         );
-
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/ubicacion/ubicacionId/recurso/{tipoRecurso}")
+    @GetMapping("/ubicacion/{ubicacionId}/recurso/{tipoRecurso}")
     public ResponseEntity<RecursoResponseDto> obtenerRecursoEspecifico(
             @PathVariable String ubicacionId,
             @PathVariable String tipoRecurso) {
-        TipoRecurso tipo = TipoRecurso.valueOf(tipoRecurso);
+        TipoRecurso tipo;
+        try { tipo = TipoRecurso.valueOf(tipoRecurso); } catch (IllegalArgumentException e) { return ResponseEntity.badRequest().build(); }
         Recurso recurso = mapaRecursosService.obtenerRecursoEspecifico(ubicacionId, tipo);
-
-        if (recurso == null) {
-            return ResponseEntity.notFound().build();
-        }
-
+        if (recurso == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(convertirARecursoDto(recurso));
     }
 
@@ -77,18 +68,15 @@ public class MapaRecursosController {
         }
     }
 
-    @PostMapping("/ubicacion/ubicacionId/consumir")
+    @PostMapping("/ubicacion/{ubicacionId}/consumir")
     public ResponseEntity<String> consumirRecurso(
             @PathVariable String ubicacionId,
             @RequestBody ConsumirRecursoRequestDto request) {
-        TipoRecurso tipo = TipoRecurso.valueOf(request.getTipoRecurso());
+        if (request == null || request.getTipoRecurso() == null) return ResponseEntity.badRequest().body("Tipo requerido");
+        TipoRecurso tipo;
+        try { tipo = TipoRecurso.valueOf(request.getTipoRecurso()); } catch (IllegalArgumentException e) { return ResponseEntity.badRequest().body("TipoRecurso inválido"); }
         boolean resultado = mapaRecursosService.consumirRecurso(ubicacionId, tipo, request.getCantidad());
-
-        if (resultado) {
-            return ResponseEntity.ok("Recurso consumido correctamente");
-        } else {
-            return ResponseEntity.badRequest().body("No se pudo consumir el recurso");
-        }
+        return resultado ? ResponseEntity.ok("Recurso consumido correctamente") : ResponseEntity.badRequest().body("No se pudo consumir el recurso");
     }
 
     @PostMapping("/transferir")
@@ -139,11 +127,34 @@ public class MapaRecursosController {
         return ResponseEntity.ok(inventarioDto);
     }
 
-    @GetMapping("/buscar/tipoRecurso")
-    public ResponseEntity<Map<String, Integer>> buscarRecursoPorTipo(@PathVariable String tipoRecurso) {
-        TipoRecurso tipo = TipoRecurso.valueOf(tipoRecurso);
-        Map<String, Integer> resultado = mapaRecursosService.buscarRecursoPorTipo(tipo);
+    @GetMapping("/inventario-completo/detallado")
+    public ResponseEntity<InventarioDetalladoResponseDto> obtenerInventarioDetallado(
+            @RequestParam(required = false) String ubicacionId,
+            @RequestParam(required = false) String nombreUbicacion) {
+        // Filtrar inventario
+        Map<String, Map<TipoRecurso, Recurso>> inventarioFiltrado = mapaRecursosService.filtrarInventarioPorIdONombre(ubicacionId, nombreUbicacion);
+        // Construir lista detallada por ubicación
+        List<InventarioUbicacionResponseDto> detalleUbicaciones = new ArrayList<>();
+        inventarioFiltrado.forEach((ubId, recursosMap) -> {
+            Map<String, RecursoResponseDto> recursosDto = new HashMap<>();
+            recursosMap.forEach((tipo, recurso) -> recursosDto.put(tipo.name(), convertirARecursoDto(recurso)));
+            detalleUbicaciones.add(new InventarioUbicacionResponseDto(ubId, "Ubicación " + ubId, recursosDto));
+        });
+        // Resumen global
+        Map<String, Object> resumenRaw = mapaRecursosService.calcularResumenInventario();
+        @SuppressWarnings("unchecked") Map<String, Integer> totalPorTipo = (Map<String, Integer>) resumenRaw.get("totalPorTipo");
+        int totalGeneral = (int) resumenRaw.get("totalGeneral");
+        int ubicacionesConRecursos = (int) resumenRaw.get("ubicacionesConRecursos");
+        InventarioResumenDto resumen = new InventarioResumenDto(totalPorTipo, totalGeneral, ubicacionesConRecursos);
 
+        InventarioDetalladoResponseDto respuesta = new InventarioDetalladoResponseDto(detalleUbicaciones, resumen);
+        return ResponseEntity.ok(respuesta);
+    }
+
+    @GetMapping("/buscar/{tipoRecurso}")
+    public ResponseEntity<Map<String, Integer>> buscarRecursoPorTipo(@PathVariable String tipoRecurso) {
+        TipoRecurso tipo; try { tipo = TipoRecurso.valueOf(tipoRecurso); } catch (IllegalArgumentException e) { return ResponseEntity.badRequest().body(Collections.emptyMap()); }
+        Map<String, Integer> resultado = mapaRecursosService.buscarRecursoPorTipo(tipo);
         return ResponseEntity.ok(resultado);
     }
 

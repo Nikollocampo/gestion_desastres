@@ -142,6 +142,71 @@ public class MapaRecursosService {
         return res;
     }
 
+    /** Resumen agregado de todo el inventario */
+    public Map<String, Object> calcularResumenInventario() {
+        Map<String, Map<TipoRecurso, Recurso>> inv = obtenerInventarioCompleto();
+        Map<String, Integer> totalPorTipo = new HashMap<>();
+        int totalGeneral = 0;
+        int ubicacionesConRecursos = 0;
+        for (Map<TipoRecurso, Recurso> recursos : inv.values()) {
+            if (!recursos.isEmpty()) ubicacionesConRecursos++;
+            for (Recurso r : recursos.values()) {
+                totalGeneral += r.getCantidad();
+                totalPorTipo.merge(r.getTipo().name(), r.getCantidad(), Integer::sum);
+            }
+        }
+        Map<String, Object> res = new HashMap<>();
+        res.put("totalPorTipo", totalPorTipo);
+        res.put("totalGeneral", totalGeneral);
+        res.put("ubicacionesConRecursos", ubicacionesConRecursos);
+        return res;
+    }
+
+    /** Estadísticas por ubicación: mapa ubicacionId -> (tipo -> cantidad) */
+    public Map<String, Map<String, Integer>> calcularEstadisticasPorUbicacion() {
+        Map<String, Map<TipoRecurso, Recurso>> inv = obtenerInventarioCompleto();
+        Map<String, Map<String, Integer>> resultado = new HashMap<>();
+        inv.forEach((ubicacionId, recursos) -> {
+            Map<String, Integer> totales = new HashMap<>();
+            int subtotal = 0;
+            for (Recurso r : recursos.values()) {
+                totales.merge(r.getTipo().name(), r.getCantidad(), Integer::sum);
+                subtotal += r.getCantidad();
+            }
+            totales.put("__TOTAL__", subtotal); // marcador total por ubicación
+            resultado.put(ubicacionId, totales);
+        });
+        return resultado;
+    }
+
+    /** Filtra el inventario por id o nombre (si se proveen) */
+    public Map<String, Map<TipoRecurso, Recurso>> filtrarInventarioPorIdONombre(String ubicacionId, String nombreUbicacion) {
+        Map<String, Map<TipoRecurso, Recurso>> inv = obtenerInventarioCompleto();
+        if ((ubicacionId == null || ubicacionId.isBlank()) && (nombreUbicacion == null || nombreUbicacion.isBlank())) {
+            return inv; // sin filtros
+        }
+        Map<String, Map<TipoRecurso, Recurso>> filtrado = new HashMap<>();
+        String nombreBuscado = nombreUbicacion != null ? nombreUbicacion.trim().toLowerCase() : null;
+        for (String id : inv.keySet()) {
+            boolean coincideId = ubicacionId != null && !ubicacionId.isBlank() && id.equals(ubicacionId);
+            boolean coincideNombre = false;
+            if (nombreBuscado != null && !nombreBuscado.isBlank()) {
+                try {
+                    ubicacionRepo.findById(id).ifPresent(u -> {
+                        String nom = u.getNombre() != null ? u.getNombre().trim().toLowerCase() : "";
+                        if (nom.equals(nombreBuscado)) {
+                            filtrado.put(id, inv.get(id));
+                        }
+                    });
+                } catch (IOException ignored) {}
+            }
+            if (coincideId) {
+                filtrado.put(id, inv.get(id));
+            }
+        }
+        return filtrado.isEmpty() ? inv : filtrado; // si no encontró nada por filtros, devolver completo
+    }
+
     // ================= API EXTENDIDA (multi-mapa) =================
     public MapaRecursos crearMapa(String id, String nombre) throws IOException {
         MapaRecursos mapa = new MapaRecursos(id, nombre);

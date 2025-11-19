@@ -2,6 +2,7 @@ package com.example.estructuras.controller;
 
 import com.example.estructuras.Mapping.dto.RegisterRequestDto;
 import com.example.estructuras.Mapping.dto.UsuarioResponseDto;
+import com.example.estructuras.Mapping.dto.EvacuacionDetalladaResponseDto;
 import com.example.estructuras.service.OperadorEmergenciaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,5 +83,17 @@ public class OperadorEmergenciaController {
         List<String> resultado = operadorService.gestionarEvacuaciones();
         return ResponseEntity.ok(resultado);
     }
-}
 
+    @GetMapping("/gestionar-evacuaciones/detallado")
+    public ResponseEntity<EvacuacionDetalladaResponseDto> gestionarEvacuacionesDetallado() {
+        try {
+            EvacuacionDetalladaResponseDto respuesta = operadorService.obtenerEvacuacionesDetalladasConResumen();
+            if (respuesta.getDetalle() == null || respuesta.getDetalle().isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(respuesta);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+}

@@ -3,6 +3,8 @@ package com.example.estructuras.service;
 import com.example.estructuras.Mapping.dto.RegisterRequestDto;
 import com.example.estructuras.Mapping.dto.UsuarioResponseDto;
 import com.example.estructuras.Mapping.dto.EvacuacionResponseDto;
+import com.example.estructuras.Mapping.dto.EvacuacionDetalladaResponseDto;
+import com.example.estructuras.Mapping.dto.EvacuacionResumenDto;
 import com.example.estructuras.exception.UserAlreadyExistsException;
 import com.example.estructuras.model.*;
 import com.example.estructuras.repository.UserJsonRepository;
@@ -249,6 +251,15 @@ public class OperadorEmergenciaService {
             ));
         }
         return resultado;
+    }
+
+    public EvacuacionDetalladaResponseDto obtenerEvacuacionesDetalladasConResumen() throws IOException {
+        List<EvacuacionResponseDto> lista = gestionarEvacuacionesDetallado();
+        int totalEventos = lista.size();
+        int totalAfectadas = lista.stream().mapToInt(EvacuacionResponseDto::getPersonasAfectadas).sum();
+        int totalEvacuadas = lista.stream().mapToInt(EvacuacionResponseDto::getPersonasEvacuadas).sum();
+        EvacuacionResumenDto resumen = new EvacuacionResumenDto(totalEventos, totalAfectadas, totalEvacuadas);
+        return new EvacuacionDetalladaResponseDto(lista, resumen);
     }
 
     private int calcularPersonasEvacuadasEstimadas(Desastre d) {

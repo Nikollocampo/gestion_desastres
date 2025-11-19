@@ -49,4 +49,21 @@
     "lng" : -74.0783228
   },
   "equiposAsignados" : [ ]
+}, {
+  "magnitud" : 2,
+  "nombre" : "grietas",
+  "idDesastre" : "4",
+  "tipoDesastre" : "DERRUMBE",
+  "personasAfectadas" : 9,
+  "fecha" : [ 2025, 11, 4 ],
+  "ubicacion" : {
+    "id" : "28269df0-c729-4e42-862a-6ec847682dc0",
+    "nombre" : "BARRIO",
+    "calle" : "Calle 50",
+    "carrera" : "Carrera 30",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : 4.6487289,
+    "lng" : -74.0682339
+  },
+  "equiposAsignados" : [ ]
 } ]
