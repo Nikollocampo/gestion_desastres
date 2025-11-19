@@ -66,4 +66,38 @@
     "lng" : -74.0682339
   },
   "equiposAsignados" : [ ]
+}, {
+  "magnitud" : 4,
+  "nombre" : "Incendio forestal",
+  "idDesastre" : "9",
+  "tipoDesastre" : "INCENDIO",
+  "personasAfectadas" : 367,
+  "fecha" : [ 2025, 11, 18 ],
+  "ubicacion" : {
+    "id" : "b98f1eb4-0410-4c19-a6d4-a58f7509bdb0",
+    "nombre" : "jhan",
+    "calle" : "Calle 2",
+    "carrera" : "Carrera 1",
+    "tipoUbicacion" : "CENTRO_AYUDA",
+    "lat" : 4.581684,
+    "lng" : -74.0677321
+  },
+  "equiposAsignados" : [ ]
+}, {
+  "magnitud" : 3,
+  "nombre" : "Fenomeno de la niña",
+  "idDesastre" : "10",
+  "tipoDesastre" : "INUNDACION",
+  "personasAfectadas" : 15,
+  "fecha" : [ 2025, 11, 17 ],
+  "ubicacion" : {
+    "id" : "39254f3e-4893-408b-8505-df24c74e844d",
+    "nombre" : "Colegio San Luis",
+    "calle" : "Calle 4",
+    "carrera" : "Carrera 10",
+    "tipoUbicacion" : "REFUGIO",
+    "lat" : 4.5854498,
+    "lng" : -74.0766639
+  },
+  "equiposAsignados" : [ ]
 } ]

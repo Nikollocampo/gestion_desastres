@@ -2,7 +2,7 @@
   "id" : "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa001",
   "nombre" : "Agua embotellada",
   "tipo" : "ALIMENTO",
-  "cantidad" : 0,
+  "cantidad" : 50,
   "ubicacion" : {
     "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
     "nombre" : "Centro Salud",
@@ -16,7 +16,7 @@
   "id" : "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa002",
   "nombre" : "Alimentos no perecederos",
   "tipo" : "ALIMENTO",
-  "cantidad" : 0,
+  "cantidad" : 6578,
   "ubicacion" : {
     "id" : "3d347f5d-c7fe-4774-bef3-3679197ff4a1",
     "nombre" : "Bienestar Sur",
@@ -30,7 +30,7 @@
   "id" : "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa003",
   "nombre" : "Suero oral",
   "tipo" : "MEDICAMENTO",
-  "cantidad" : 0,
+  "cantidad" : 116,
   "ubicacion" : {
     "id" : "bc2032a7-017d-457e-8ca6-ab57a2193d35",
     "nombre" : "Clinica Sur",
@@ -44,7 +44,7 @@
   "id" : "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa004",
   "nombre" : "Analgésicos",
   "tipo" : "MEDICAMENTO",
-  "cantidad" : 0,
+  "cantidad" : 6876544,
   "ubicacion" : {
     "id" : "1ee23f5f-961c-42a1-9f95-4ffe2571f0c0",
     "nombre" : "Salud Integral",
@@ -72,7 +72,7 @@
   "id" : "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa006",
   "nombre" : "Fórmula infantil",
   "tipo" : "ALIMENTO",
-  "cantidad" : 0,
+  "cantidad" : 234,
   "ubicacion" : {
     "id" : "39254f3e-4893-408b-8505-df24c74e844d",
     "nombre" : "Colegio San Luis",
@@ -86,7 +86,7 @@
   "id" : "f6c2e2c8-0f62-4db9-8a9d-3a1f7f9fa007",
   "nombre" : "Barras energéticas",
   "tipo" : "ALIMENTO",
-  "cantidad" : 0,
+  "cantidad" : 87,
   "ubicacion" : {
     "id" : "ca54312d-d335-4cec-9605-a1799ec1aa9d",
     "nombre" : "laureles",
@@ -156,7 +156,7 @@
   "id" : "21cf1b35-1952-4452-8222-70c671066875",
   "nombre" : "Atun",
   "tipo" : "ALIMENTO",
-  "cantidad" : 0,
+  "cantidad" : 90,
   "ubicacion" : {
     "id" : "7b958f06-cd4c-4316-81b9-254c92216a07",
     "nombre" : "Centro Salud",
@@ -184,7 +184,7 @@
   "id" : "c1413b9e-0bfd-4770-8c8c-633b13725a15",
   "nombre" : "bebida",
   "tipo" : "ALIMENTO",
-  "cantidad" : 20,
+  "cantidad" : 0,
   "ubicacion" : {
     "id" : "0b751e16-3bed-4230-86e2-bd75182ab37e",
     "nombre" : "Centro Esperanza",
@@ -198,7 +198,7 @@
   "id" : "8dac6bcf-825e-428f-b0a5-e55e6965376b",
   "nombre" : "acetaminofen ",
   "tipo" : "MEDICAMENTO",
-  "cantidad" : 20,
+  "cantidad" : 234567,
   "ubicacion" : {
     "id" : "0b751e16-3bed-4230-86e2-bd75182ab37e",
     "nombre" : "Centro Esperanza",
